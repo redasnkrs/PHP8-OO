@@ -1,5 +1,5 @@
 # PHP8-OO
-L'Orienté Objet en PHP 8.0 et vers l'avenir
+La Programmation Orienté Objet en PHP 8.0 et vers l'avenir
 
 ## Attention ce cours est destiné à des apprenants qui ont des bases en PHP et qui veulent rendre leur code plus structuré et mieux organisé.
 Une connaissance au modèle MVC est une plus
