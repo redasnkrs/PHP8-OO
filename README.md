@@ -33,6 +33,44 @@ En PHP procédural, tu as l'habitude de créer des fonctions comme `afficher_uti
 En POO, on pense en termes d'**objets**. Un objet regroupe à la fois des **données** (des propriétés, par exemple `$nom`, `$email`) et des **actions** (des méthodes, par exemple `sauvegarder()`, `supprimer()`).
 
 Ceci nous permet de créer un "moule" appelé **classe** pour représenter des choses du monde réel, comme un utilisateur.
+## 1.2 Les classes et les objets
+   Définition : Une classe est une structure qui permet de définir des objets. Une classe est un modèle qui décrit les caractéristiques communes d'un groupe d'objets.
+
+Un objet est une instance d'une classe. Un objet est une entité qui possède des propriétés, des constantes et des méthodes.
+
+## 1.1. Déclaration d'une classe
+La déclaration d'une classe en PHP commence par le mot clé class, suivi du nom de la classe et de son contenu entre accolades. Voici un exemple de déclaration de classe en PHP
+
+```php
+
+class MaClasse {
+// Propriétés
+private $proprietePrivee;
+public $proprietePublique = 'Valeur par défaut';
+
+    // Constantes
+    const MA_CONSTANTE = 'Valeur constante';
+
+    // Méthodes
+    public function methodePublique() {
+        echo "Ceci est une méthode publique";
+    }
+    
+    private function methodePrivee() {
+        echo "Ceci est une méthode privée";
+    }
+}
+```
+Dans cet exemple, la classe s'appelle MaClasse. Elle a deux propriétés : une propriété privée $proprietePrivee et une propriété publique $proprietePublique initialisée à 'Valeur par défaut'.
+
+Elle a également une constante MA_CONSTANTE initialisée à 'Valeur constante'. Elle est accessible depuis l'extérieur de la classe en utilisant le nom de la classe suivi de l'opérateur de résolution de portée `::` et du nom de la constante.
+
+Par exemple, pour accéder à la constante MA_CONSTANTE depuis l'extérieur de la classe, on écrira :
+
+```php
+<?php
+echo MaClasse::MA_CONSTANTE;
+```
 
 ### 02 Exemple simple : Création d'une classe `Utilisateur`
 
@@ -65,3 +103,5 @@ $pierre->email = "pierre.dupont@email.com";
 
 // Appeler une méthode de l'objet
 echo $pierre->saluer(); // Affiche "Bonjour, je m'appelle Pierre Dupont"
+```
+
