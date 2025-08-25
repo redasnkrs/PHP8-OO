@@ -17,7 +17,7 @@ Il s'agit donc de représenter ces objets et leurs relations. L'interaction entr
 
 
 ## Menu de navigation
-- [code](https://github.com/WebDevCF2m2025/PHP8-OO)
+- [code](PHP8-OO)
 - [Introduction](#php-8-orienté-objet)
     - [1. Les classes et les objets](#1-les-classes-et-les-objets)
         - [1.1. Déclaration d'une classe](#11-déclaration-dune-classe)
