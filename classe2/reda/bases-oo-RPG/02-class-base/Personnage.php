@@ -8,7 +8,7 @@ class Personnage
   // Attributs
   public string $genre; // attribut public sans valeur
   public int $age = 25; // attribut public avec valeur
-  public null|int|string $mois;
+  public null|int|string $mois; // 3 types possibles
   // Constantes
   // Méthodes
 
