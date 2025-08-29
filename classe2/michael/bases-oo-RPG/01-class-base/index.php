@@ -31,7 +31,7 @@ $perso2 = new Personnage();
 $perso3 = $perso1;
 
 // affichage des personnages
-        
+
 var_dump($perso1,$perso2,$perso3);</code></pre>
 <?php
 // création de 2 instances de type Personnage contenues
