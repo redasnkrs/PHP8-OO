@@ -61,17 +61,29 @@ $perso2->mois = "Janvier";
 
 
 
-$perso3->genre = "Feminin";
+$perso3->genre = "Féminin";
 $perso3->age = 20;
 $perso3->mois = 8;
 
 var_dump($perso1, $perso2, $perso3);
 ?>
+<h3>Affichage :</h3>
+<h4>Ces attributs sont modifiables depuis l'extérieur de la classe</h4>
+<p>avec le signe echo instance-> attribut</p>
+<pre><code>
+    echo '$perso1 : '. "Genre :{$perso1->genre} | Age :{$perso1->age} ans | Mois :{$perso1->mois}";
+    echo '$perso2 : '. "Genre :{$perso2->genre} | Age :{$perso2->age} ans | Mois :{$perso2->mois}";
+    echo '$perso1 : '. "Genre :{$perso3->genre} | Age :{$perso3->age} ans | Mois :{$perso3->mois}";
+
+  </code></pre>
 
 
+<?php
+echo '$perso1 : '. "Genre :{$perso1->genre} | Age :{$perso1->age} ans | Mois :{$perso1->mois}" ."<br>";
+echo '$perso2 : '. "Genre :{$perso2->genre} | Age :{$perso2->age} ans | Mois :{$perso2->mois}" ."<br>";
+echo '$perso1 : '. "Genre :{$perso3->genre} | Age :{$perso3->age} ans | Mois :{$perso3->mois}" ."<br>";
 
-bb
-
+?>
 
 
 </body>
