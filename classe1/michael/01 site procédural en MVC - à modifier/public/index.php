@@ -46,7 +46,7 @@ $lala = 5;
 // liens symboliques vers l'instance (objet)
 $connectPDO2 = $connectPDO;
 
-// nouvelles connexion (2)
+// nouvelles connexions (2)
 $connectPDO3 = new PDO(
     DB_TYPE.':host='.DB_HOST.';port='.DB_PORT.';dbname='.DB_NAME.';charset='.DB_CHARSET,
     DB_LOGIN,
