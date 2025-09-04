@@ -1,3 +1,11 @@
+<?php
+
+// Déclaration du mode strict
+declare(strict_types=1);
+
+include "Personnage.php";
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,9 +16,6 @@
   <title>Classe avec getters et setters</title>
 </head>
 <body style="background-color: whitesmoke">
-<?php
-include "Personnage.php";
-?>
 <h1>Classe avec getters et setters</h1>
 <h2>Affichage de la classe</h2>
 <?php
@@ -27,7 +32,7 @@ par défaut.</p>
 echo $perso1::LA_RACE . " ";
 
 // Bonne pratique, on part de la classe
-echo Personnage::LA_RACE . "<br> ";
+echo Personnage::LA_RACE . " ";
 
   </code> </pre>
 
@@ -48,6 +53,30 @@ var_dump( $perso1 );
 ?>
 
 
-<h2>Propriété private</h2>
+<h2>private</h2>
+<p>On ne peut les lire ou les modifier depuis l'extérieur
+  de la class (ni depuis les enfants voir
+  les protected — héritage).</p>
+<p>Valable pour les 3 grands types:</p>
+<ul>
+  <li>Propriété</li>
+  <li>Constante</li>
+  <li>Méthode</li>
+</ul>
+<pre style="background-color: #1a1e21; color: #20c997"><code>
+$perso1->le_nom = "Jean"; // Erreur
+echo $perso1->l_age; // Erreur
+
+  </code>
+</pre>
+<h2>Setters</h2>
+<h3>ou mutators, méthodes publiques</h3>
+<p>Ils permettent de modifier les propiétés private ou
+protected (ou public en readonly).</p>
+
+<?php
+$perso1->setLeNom("Pierre");
+var_dump( $perso1 );
+?>
 </body>
 </html>
