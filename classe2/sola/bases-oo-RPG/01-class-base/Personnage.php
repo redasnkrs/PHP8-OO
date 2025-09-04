@@ -5,6 +5,7 @@
 
 class Personnage {
     // Attributs
+    public string $genre; // atribut public sans valeur par défaut
     // Constantes
     // Méthodes
 }
