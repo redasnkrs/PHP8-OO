@@ -33,26 +33,21 @@ class Personnage{
      * @throws Exception
      */
     public function setLeNom(string $nom): void
-        {
-            // on va vérifier que le nom respecte les
-            // critères imposés
-            $thename = trim($nom);
+    {
+        $thename = trim($nom);
 
-            // A vérifier [A-Za-z] EXRPESSION REG
-
-
-            // le nom de l'instance est représenté par $this
-            if($thename!=="") {
-                if(strlen($thename)>=5
-                    && strlen($thename)<=25) {
-                    $this->le_nom = $thename;
-                }else{
-                    throw new Exception("nom plus petit que 5 ou plus grand que 25");
-                }
-
-            }else{
-                throw new Exception("Espaces vides non autorisés");
-            }
+        // On vérifie la longueur du nom
+        if (strlen($thename) < 5 || strlen($thename) > 25) {
+            throw new Exception("Le nom doit contenir entre 5 et 25 caractères.");
         }
+
+        // On vérifie si le nom correspond à l'expression régulière
+        if (!preg_match('/^[a-zA-Z][a-zA-Z0-9]*$/', $thename)) {
+            throw new Exception("Le nom doit commencer par une lettre, ne pas contenir d'espaces et ne peut contenir que des lettres et des chiffres.");
+        }
+
+        // Si tout est bon, on assigne le nom
+        $this->le_nom = $thename;
+    }
 
 }

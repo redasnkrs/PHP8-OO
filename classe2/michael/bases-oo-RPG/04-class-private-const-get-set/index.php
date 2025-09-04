@@ -56,7 +56,7 @@ echo $perso1->l_age;
 <h3>ou mutator, méthodes publiques</h3>
 <p>Ils permettent de modifier les propriétés private ou protected (ou public en readonly)</p>
 <?php
-$perso1->setLeNom("  Z27477");
+$perso1->setLeNom(" 25 Z27477");
 
 var_dump($perso1);
 ?>
