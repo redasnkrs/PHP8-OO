@@ -1,3 +1,7 @@
+<?php
+// déclaration stricte
+declare(strict_types=1);
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -31,6 +35,24 @@ $user2 = new Personnage();
 
 var_dump($user1,$user2);
 
+?>
+<h2>Modification des propriétés publiques</h2>
+<p>Attention, on peut modifier depuis l'extérieur de la classe les propriétés public (le typage sécurise, mais pas suffisamment)</p>
+<?php
+
+// modification des propriétés publiques
+$user1->the_name = "Pierre";
+$user1->the_surname = null;
+$user1->the_walking_dead = "<script> alert('hi'); </script>";
+
+
+var_dump($user1,$user2);
+?>
+<h2>Affichage des propriétés public</h2>
+<p>On peut immédiatement afficher les propriétés publiques, attaques xss etc possibles</p>
+<?php
+echo "<p>Nom: $user1->the_name</p>";
+echo "<p>the_walking_dead: $user1->the_walking_dead</p>";
 ?>
 
 </body>
