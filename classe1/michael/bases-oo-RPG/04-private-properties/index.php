@@ -36,13 +36,18 @@ var_dump($stag1,$stag2);
 <h3>setters (mutators)</h3>
 <p>Ce sont des méthodes publiques qui permettent de modifier les proprétés private (ou protected)</p>
 <?php
-$stag1->setLeNom("PierrePierrePierrePierrePierrePierrePierrePierre");
+$stag1->setLeNom("PierrePierre");
 
 $stag2->setLeNom("<script> alert('yep'); </script> ");
 
-$stag3->setLeNom("  5 ");
+$stag3->setLeNom("  25 ");
 
 var_dump($stag1,$stag2,$stag3);
+
+// constante public en partant de la classe
+echo Stagiaire::EST_VIVANT;
+echo
+Stagiaire::getUp()
 ?>
 </body>
 </html>

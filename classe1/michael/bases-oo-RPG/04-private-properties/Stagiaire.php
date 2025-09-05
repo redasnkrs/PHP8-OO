@@ -8,6 +8,11 @@ class Stagiaire{
 
     // constantes
 
+    // par défaut une constante est public
+
+    const string EST_VIVANT= "oui";
+
+
     // méthodes
 
         // setters (permettent de modifier les propriétés en
@@ -15,6 +20,7 @@ class Stagiaire{
 
         public function setLeNom(string $nom): void
         {
+
             // pas d'espaces vides devant et derrière
             $nom = trim($nom);
             // pas de tags dans le nom
@@ -39,5 +45,10 @@ class Stagiaire{
             }
         }
 
+
+        // méthode statique, peut être appelée sans instanciation ::
+        public static function getUp():string{
+            return "aurevoir";
+        }
 
 }
