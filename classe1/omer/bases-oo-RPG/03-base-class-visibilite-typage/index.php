@@ -20,21 +20,18 @@ include "Personnage.php";
 ?>
 <hr>
 <h3>Instanciation de la classe</h3>
-<p>Cette classe est vide, on peut tout de même l'instancier en utilisant le mot clef <strong>new</strong>, c'est-à-dire créer une instance de la classe (donc un objet)</p>
+<p>Cette classe ne contient qu'une propriété <code>public $the_name</code>, on peut tout de même l'instancier en utilisant le mot clef <strong>new</strong>, c'est-à-dire créer une instance de la classe (donc un objet)</p>
 <pre><code>$user1 = new Personnage();
 $user2 = new Personnage();
 
-// ne fonctionne pas, c'est un lien symbolique vers l'objet et non une attribution de valeur (Alias)
-$user3 = $user1;
-
-var_dump($user1,$user2,$user3);</code></pre>
+var_dump($user1,$user2);</code></pre>
 <?php
 $user1 = new Personnage();
 $user2 = new Personnage();
-// ne fonctionne pas, c'est un lien symbolique vers l'objet et non une attribution de valeur
-$user3 = $user1;
-var_dump($user1,$user2,$user3);
+
+var_dump($user1,$user2);
 
 ?>
+
 </body>
 </html>
