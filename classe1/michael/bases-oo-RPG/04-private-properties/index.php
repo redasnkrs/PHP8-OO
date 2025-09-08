@@ -36,18 +36,42 @@ var_dump($stag1,$stag2);
 <h3>setters (mutators)</h3>
 <p>Ce sont des méthodes publiques qui permettent de modifier les proprétés private (ou protected)</p>
 <?php
-$stag1->setLeNom("PierrePierre");
+$stag1->setLeNom("Pitz");
+$stag1->setLePrenom("Michaël");
 
-$stag2->setLeNom("<script> alert('yep'); </script> ");
+$stag2->setLeNom("Sandron");
 
-$stag3->setLeNom("  25 ");
+$stag3->setLeNom("  coroli ");
+
+
 
 var_dump($stag1,$stag2,$stag3);
 
+?>
+<h3>getters</h3>
+<p>Ce sont des méthodes publiques qui permettent d'afficher les proprétés private (ou protected)</p>
+<p>
+<?php
+echo '$stag1 => '. " Nom et prénom : {$stag1->getLeNom()} {$stag1->getLePrenom()}";
+?>
+</p>
+<hr>
+<?php
+
 // constante public en partant de la classe
 echo Stagiaire::EST_VIVANT;
+/*
+// affichage méthode static
 echo
-Stagiaire::getUp()
+Stagiaire::getUp();
+echo "<hr>";
+$text = "Bonjour les amis";
+echo $text[0];
+$count = strlen($text);
+for($i=0;$i<$count;$i++){
+    echo $text[$i]."<br>";
+}
+*/
 ?>
 </body>
 </html>

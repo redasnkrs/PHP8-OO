@@ -46,6 +46,8 @@ $user1->the_surname = null;
 $user1->the_walking_dead = "<script> alert('hi'); </script>";
 
 
+$user2->the_name = '500';
+
 var_dump($user1,$user2);
 ?>
 <h2>Affichage des propriétés public</h2>
