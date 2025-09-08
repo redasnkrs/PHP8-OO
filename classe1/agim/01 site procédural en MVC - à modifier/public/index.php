@@ -39,8 +39,8 @@ if (isset($_SESSION['myID']) && $_SESSION['myID'] == session_id()) {
 
 class Perso {};
 
-$user1 = new Perso();
-$user2 = new Perso();
+$user1 = new constructeur\Perso();
+$user2 = new constructeur\Perso();
 // ne foncction pas, c'est un lien symbolyque vers l'objet et nom une attribution de valeur
 $user3 = $user1;
 echo "<pre>";
