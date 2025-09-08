@@ -19,6 +19,8 @@ $perso1 = new Perso("Michaël","Magicien");
 $perso2 = new Perso("Pierre","Humain");
 echo "<hr>";
 echo 'Perso::BEGIN_HEALTH => '.Perso::BEGIN_HEALTH."<br>";
+echo "<hr>";
+echo 'Mauvaise pratique, depuis l\'instance : $perso1::BEGIN_HEALTH => '.$perso1::BEGIN_HEALTH."<br>";
 // Ne fonctionnera pas :
 //echo 'Perso::RACE => '.Perso::RACE."<br>";
 // fonctionne car readonly
@@ -27,6 +29,8 @@ echo "On peut le lire depuis l'extérieur, mais pas le modifier :<br>";
 echo $perso1->spec;
 echo '<br> ne fonctionne pas (attribution) $perso1->spec=25<br> N\'est pas encore une bonne pratique, à garder en mémoire pour l\'avenir';
 var_dump($perso1,$perso2);
+
+
 ?>
 </body>
 </html>
