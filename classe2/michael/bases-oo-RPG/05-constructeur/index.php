@@ -19,8 +19,8 @@ if(LaVoiture::VOITURE_NEUVE===true){
     echo "<h2>Voitures neuves</h2>";
 }
 
-$car1 = new LaVoiture("Mercedes",2007);
-$car2 = new LaVoiture("Volvo",2015);
+$car1 = new LaVoiture("Mercedes",2024,333,"EQS");
+$car2 = new LaVoiture("Volvo",2015,428, "EX30");
 
 // constante privée
 //echo LaVoiture::MOTORISATION;
