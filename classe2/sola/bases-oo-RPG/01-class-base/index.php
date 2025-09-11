@@ -12,7 +12,7 @@
 <h2>Importation</h2>
 <p>Chaque classe devra se trouver dans un fichier unique, qui portera le même nom que la classe (autoload).</p>
 <p>Nous allons le charger ci-dessous, (se fait en principe avant le doctype)</p>
-<code>include "Personnage.php";
+<code>include "Personnage.php";</code>
 <?php
 include "Personnage.php";
 ?>
