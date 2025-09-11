@@ -48,7 +48,7 @@ class LaVoiture
     {
         $traiteMarque = htmlspecialchars(strip_tags(trim($laMarque)));
         if($traiteMarque===""){
-            trigger_error("Le champs ne peut être vide");
+            trigger_error("Instance numéro : ".spl_object_id($this)." Le champs ne peut être vide");
         }else{
             // on remplit la propriété
             $this->marque = $traiteMarque;
