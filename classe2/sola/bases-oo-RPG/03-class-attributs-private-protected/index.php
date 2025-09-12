@@ -28,7 +28,7 @@ $perso3 = new Personnage();
 
 // affichage des personnages
 
-var_dump($perso1,$perso2,$perso3);</pre>
+var_dump($perso1,$perso2,$perso3);</code></pre>
 <?php
 // création de 2 instances de type Personnage contenues
 // dans des alias vers la mémoire où se trouve l'objet
@@ -75,8 +75,7 @@ var_dump($perso1);</code>
 $perso1->initializePersonnage();
 var_dump($perso1);
 ?>
-<p>Méthode publique bateau 2 : public function initializeLazyPersonnage(string $leGenre, int $lAge, null|string|int $leMois):void
-Cette fonction ne vérifie que le type, mais permet de changer les 3 attributs</p>
+<p>Méthode publique bateau 2 : public function initializeLazyPersonnage(string $leGenre, int $lAge, null|string|int $leMois):void<br>Cette fonction ne vérifie que le type, mais permet de changer les 3 attributs</p>
 <pre><code>
 $perso2->initializeLazyPersonnage("lala",-7,null);
 $perso3->initializeLazyPersonnage(" ",3000,"Quindécembre");
@@ -88,8 +87,7 @@ $perso3->initializeLazyPersonnage(" ",3000,"Quindécembre");
 var_dump($perso2,$perso3);
 ?>
 
-<p>Méthode publique bateau 3 : public function initializeTruePersonnage(string $leGenre, int $lAge, null|string|int $leMois):void
-Cette fonction vérifie plus que le type, permet de changer les 3 attributs, mais n'est pas assez précise (getters and setters)</p>
+<p>Méthode publique bateau 3 : public function initializeTruePersonnage(string $leGenre, int $lAge, null|string|int $leMois):void<br>Cette fonction vérifie plus que le type, permet de changer les 3 attributs, mais n'est pas assez précise (getters and setters)</p>
 <pre><code>
 $perso4 = new Personnage();
 $perso5 = new Personnage();
@@ -107,4 +105,3 @@ var_dump($perso4,$perso5);
 <h1>suivant getters and setters</h1>
 </body>
 </html>
- </code>

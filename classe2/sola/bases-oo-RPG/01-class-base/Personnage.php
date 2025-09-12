@@ -1,11 +1,10 @@
 <?php
-// Le nom de la classe doit corespondre au nom du fichier
-// On déclare une classe avec le mot clé "class{}"
+// Le nom de la classe doit correspondre au nom du fichier
+// On déclare une classe avec le mot clef `class{}`
 
-
-class Personnage {
+class Personnage
+{
     // Attributs
-    public string $genre; // atribut public sans valeur par défaut
     // Constantes
     // Méthodes
 }
