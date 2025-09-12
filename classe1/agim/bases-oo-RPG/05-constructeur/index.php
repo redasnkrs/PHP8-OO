@@ -1,6 +1,9 @@
 <?php
+// phpinfo();
+
 declare(strict_types=1);
 include "Perso.php";
+include "../06-construct-get-set/NotrePerso.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -27,10 +30,14 @@ echo 'Mauvaise pratique, depuis l\'instance : $perso1::BEGIN_HEALTH => '.$perso1
 echo '<h4>readonly</h4>';
 echo "On peut le lire depuis l'extérieur, mais pas le modifier :<br>";
 echo $perso1->spec;
+echo "<pre>";
 echo '<br> ne fonctionne pas (attribution) $perso1->spec=25<br> N\'est pas encore une bonne pratique, à garder en mémoire pour l\'avenir';
 var_dump($perso1,$perso2);
+echo "</pre>";
+
 
 
 ?>
+
 </body>
 </html>

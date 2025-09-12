@@ -20,11 +20,12 @@ class NotrePerso{
     // méthodes
 
     // constructeur appelé lors de l'instanciation (new) ! Ajout de la race
-    public function __construct(?int $lid,?string $lename){
+    public function __construct(?int $lid,?string $lename,?string $laRace){
         // utilisation des setters pour protéger les champs
         $this->setName($lename);
         $this->setId($lid);
         // utilisation du setter de espece_perso
+        $this->setEspecePerso($laRace);
     }
 
     // getter
@@ -40,7 +41,7 @@ class NotrePerso{
 
     // envoi null ou l'espèce choisie
     public function getEspecePerso(){
-
+        return $this->espece_perso;
     }
 
     // setter
@@ -63,6 +64,10 @@ class NotrePerso{
     // on ne peut choisir qu'une espèce se trouvant dans self::CHOIX_ESPECE
     public function setEspecePerso(?string $race):void
     {
-
+        if (!in_array($race,self::CHOIX_ESPECE)) {
+            throw new Exception("bite", 1);
+            
+        }
+        $this->espece_perso = htmlspecialchars(strip_tags(trim($race)));
     }
 }

@@ -1,5 +1,4 @@
 <?php
-
 class Perso
 {
     // propriétés
@@ -12,8 +11,8 @@ class Perso
     public readonly ?string $spec;
 
     // constantes
-    public const int BEGIN_HEALTH = 100;
-    private const array RACE = ["Humain", "Elf", "Orque"];
+    public const BEGIN_HEALTH = 100;
+    private const RACE = ["Humain", "Elf", "Orque"];
 
     // Méthodes
 
