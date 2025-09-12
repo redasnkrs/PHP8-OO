@@ -3,7 +3,7 @@ declare(strict_types=1);
 include "LaVoiture.php";
 ?>
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -21,8 +21,8 @@ if(LaVoiture::VOITURE_NEUVE===true){
 }
 
 $car1 = new LaVoiture("   Mercedes2 <br>",2024,333,"EQS");
-$car2 = new LaVoiture("<script> alert('XSS'); </script>",2015,428, "EX30");
-$car3 = new LaVoiture("    ",2008,150,"");
+$car2 = new LaVoiture("<script> alert('XSS'); </script>", 2015, 348, " EX30 ");
+$car3 = new LaVoiture("Volvo",2008,150,"HX3");
 
 // constante privée
 //echo LaVoiture::MOTORISATION;
@@ -34,7 +34,7 @@ var_dump($car1,$car2,$car3,LaVoiture::NOS_MARQUES);
 <p>Permettent de récupérer la valeur</p>
 <?php
 echo 'La marque de notre $car1 ($car1->getMarque()) : '."{$car1->getMarque()}<br>";
-echo 'La marque de notre $car2 (htmlspecialchars($car2->getMarque())) contient une attaque XSS, si vous ne savez pas d\'où viennent les données, protégées les à l\'affichage : '.htmlspecialchars($car2->getMarque())."<br>";
+echo 'La marque de notre $car2 (htmlspecialchars($car2->getMarque())) contient une attaque XSS, si vous ne savez pas d\'où viennent les données, protégées les à l\'affichage :<br>';
 ?>
 <h3>Les setters</h3>
 <p>Ou mutator, permet de modifier une propriétée tout en vérifiant la sécurité voulue pour celle-ci</p>

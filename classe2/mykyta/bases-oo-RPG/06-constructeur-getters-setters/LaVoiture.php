@@ -28,41 +28,52 @@ class LaVoiture
         // utilisation des setters pour protéger
         // les entrées lors de la création de l'instance
         $this->setMarque($laMarque);
-
+        $this->setAnneSortie($year);
+        $this->setChevaux($chevaux);
+        $this->setModel($model);
     }
 
-    // getter
 
-    // getMarque pour récupérer la marque
+    // GETTERS ////////////////////////
+
     public function getMarque(): ?string
     {
         return $this->marque;
     }
-
-    // setters setMarque pour modifier la marque
-    // ne peut être vide, protection trim()- strip_tags
-    // htmlspecialchars
-    // EXE : ne peut être plus petit que 3
-    // EXE : ne peut être plus grand que 20
-    public function setMarque(?string $laMarque): void
-    {
-        $traiteMarque = htmlspecialchars(strip_tags(trim($laMarque)));
-        if($traiteMarque===""){
-            trigger_error("Le champs ne peut être vide");
-        }elseif(mb_strlen($traiteMarque)< 3 || mb_strlen($traiteMarque) > 20){
-            trigger_error("Le champs peut être entre 3 et 20");
-        }else{
-             // on remplit la propriété
-            $this->marque = $traiteMarque;
-        }
-    }
-
-    // getter getAnneeSortie()
+    
     public function getAnneeSortie(): ?int
     {
         return $this->annee_sortie;
     }
 
+    public function getChevaux()
+    {
+        return $this->chevaux;
+    }    
+        
+    public function getModel()
+    {
+        return $this->model;
+    }
+    
+         // SETTERS 
+
+    // ne peut être vide, protection trim()- strip_tags
+    // htmlspecialchars
+    // EXE : ne peut être plus petit que 3
+    // EXE : ne peut être plus grand que 20
+    public function setMarque(?string $laMarque){
+        $traiteMarque = htmlspecialchars(strip_tags(trim($laMarque)));
+        if($traiteMarque===""){
+            trigger_error("Le champs ne peut être vide");
+        }elseif(in_array($laMarque,self::NOS_MARQUES)){
+            $this->marque=$traiteMarque;
+        }else{
+             // on remplit la propriété
+            trigger_error("La marque n'est pas accepté !\n");
+        }
+    }
+    
     public function setAnneSortie(?int $annee_sortie){
         if ($annee_sortie < 1800 || $annee_sortie  > date('Y')){
             trigger_error("Error Anné !\n");
@@ -71,23 +82,12 @@ class LaVoiture
         }
     }
 
-    public function getChevaux()
-    {
-        return $this->chevaux;
-    }
-
     public function setChevaux(?int $chevaux){
         if ($chevaux < 50 || $chevaux  > 1000){
             trigger_error("Error Chevaux !\n");
         }else{
             $this->chevaux = $chevaux; 
         }
-
-    }
-
-        public function getModel()
-    {
-        return $this->model;
     }
 
     public function setModel(?string $model){
@@ -98,10 +98,8 @@ class LaVoiture
         }else{
             $this->model = $model; 
         }
-
     }
-
-
+}
     // setter setAnneeSortie()
     // entier positif
     // EXE supérieur 1800
@@ -115,5 +113,3 @@ class LaVoiture
     // BONUS EXE
     // CHANGER le setter de LaMarque pour qu'il n'accepte
     // que les marques dans le tableau self::NOS_MARQUES
-
-}
