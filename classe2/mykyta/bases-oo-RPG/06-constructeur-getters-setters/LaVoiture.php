@@ -94,7 +94,7 @@ class LaVoiture
         htmlspecialchars(strip_tags(trim($model)));
         if  
         (in_array( $model, self::NOS_MARQUES) ){
-            trigger_error("n'est pas axepté !\n");
+            trigger_error("n'est pas accepté !\n");
         }else{
             $this->model = $model; 
         }
