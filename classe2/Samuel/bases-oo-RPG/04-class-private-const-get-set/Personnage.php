@@ -16,7 +16,7 @@ class Personnage {
     // Constantes (équivalentes des constantes).
     // Elles sont publiques par défault
 
-    const LA_RACE = "Humain";
+    const ?string LA_RACE = "Humain";
     private const LE_GENRE = "Masculin";
 
     // Méthodes (équivalentes des fonctions)

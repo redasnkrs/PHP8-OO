@@ -13,12 +13,16 @@ include "LaVoiture.php";
 </head>
 <body>
 <h1>Exercice Constructeur, getters et setters</h1>
-<pre><code>$voiture1 = new LaVoiture();</code></pre>
+<h2>Notice grâce ar trigger_error() par défaut</h2>
+<pre><code>$voiture1 = new LaVoiture('Fiat',2024,600,'DOBLÒ VAN L1');
+$voiture2 = new LaVoiture('Renault',2028,600,' ');
+$voiture3 = new LaVoiture(' ddd',2024,20,'kjhjhk');
+var_dump($voiture1,$voiture2,$voiture3);    </code></pre>
 <?php
 $voiture1 = new LaVoiture('Fiat',2024,600,'DOBLÒ VAN L1');
 $voiture2 = new LaVoiture('Renault',2028,600,' ');
-$voiture3 = new LaVoiture(' ',2024,600,' ');
-var_dump($voiture1,$voiture2);
+$voiture3 = new LaVoiture(' ddd',2024,20,'kjhjhk');
+var_dump($voiture1,$voiture2,$voiture3);
 ?>
 </body>
 </html>

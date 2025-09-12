@@ -30,7 +30,7 @@ class LaVoiture
         $this->setMarque($laMarque);
         $this->setModel($model);
         $this->setAnneeSortie($year);
-
+        $this->setChevaux($chevaux);
     }
 
     // getter
@@ -67,11 +67,11 @@ class LaVoiture
     /**
      * @param int|null $annee_sortie
      */
-    public function setAnneeSortie(?int $annee_sortie): void
+    public function setAnneeSortie(int $annee_sortie): void
     {
         if($annee_sortie<1800){
             trigger_error("Instance numéro : " . spl_object_id($this) . " Le champs ne peut dater d'avant 1800");
-        }elseif($annee_sortie>date('Y')) {
+        }elseif($annee_sortie> (int)date('Y')) {
             trigger_error("Instance numéro : " . spl_object_id($this) . " Le champs ne peut dater de l'avenir");
 
         }else {
@@ -79,16 +79,32 @@ class LaVoiture
         }
     }
 
+    public function getChevaux():?int
+    {
+        return $this->chevaux;
+    }
     // EXE idem pour les $chevaux
     // EXE minimum 50 maximum 1000
 
-    // EXE model idem que pour le modèle
-    // setters setModel pour modifier le modèle
-    // ne peut être vide, protection trim()- strip_tags
-    // htmlspecialchars
-    // EXE : ne peut être plus petit que 3
-    // EXE : ne peut être plus grand que 20
-    public function setModel(?string $model): void
+    public function setChevaux(int $chevaux): void
+    {
+        if($chevaux<50){
+            trigger_error("Instance numéro : " . spl_object_id($this) . " Le champs doit êtr plus grand ou égal à 50");
+        }
+        elseif($chevaux>1000){
+            trigger_error("Instance numéro : " . spl_object_id($this) . " Le champs doit êtr plus petit ou égal à 1000");
+        }else {
+            $this->chevaux = $chevaux;
+        }
+    }
+
+
+    public function getModel():?string
+    {
+        return $this->model;
+    }
+
+    public function setModel(string $model): void
     {
         // protection des champs
         $model = htmlspecialchars(strip_tags(trim($model)));
@@ -104,8 +120,5 @@ class LaVoiture
         }
     }
 
-    // BONUS EXE
-    // CHANGER le setter de LaMarque pour qu'il n'accepte
-    // que les marques dans le tableau self::NOS_MARQUES
 
 }
