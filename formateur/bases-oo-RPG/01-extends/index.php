@@ -29,8 +29,13 @@ try {
 
 }
 
-$stmt = $connectPDO->query("SELECT * FROM category");
-var_dump($stmt->fetchAll());
+try {
+    $stmt = $connectPDO->query("SELECT * FROM category");
+    var_dump($stmt->fetchAll());
+}catch (Exception $e){
+    echo $e->getMessage();
+}
+
 
 
 var_dump($perso,$persoOrc,$connectPDO);
