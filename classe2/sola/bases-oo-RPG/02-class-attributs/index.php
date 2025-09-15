@@ -28,7 +28,7 @@ $perso3 = new Personnage();
 
 // affichage des personnages
 
-var_dump($perso1,$perso2,$perso3);</pre>
+var_dump($perso1,$perso2,$perso3);</code></pre>
 <?php
 // création de 2 instances de type Personnage contenues
 // dans des alias vers la mémoire où se trouve l'objet
@@ -80,12 +80,9 @@ var_dump($perso1,$perso2,$perso3);
 echo '$perso2 : '." Genre : {$perso2->genre} | Age : {$perso2->age} | Mois : {$perso2->mois}&lt;br&gt;";
 echo '$perso3 : '." Genre : {$perso3->genre} | Age : {$perso3->age} | Mois : {$perso3->mois}&lt;br&gt;";</code></pre>
 <?php
-echo '$perso1 : '." Genre : {$perso1->genre} | Age : {$perso1->age} | Mois : {$perso1->mois}
-";
-echo '$perso2 : '." Genre : {$perso2->genre} | Age : {$perso2->age} | Mois : {$perso2->mois}
-";
-echo '$perso3 : '." Genre : {$perso3->genre} | Age : {$perso3->age} | Mois : {$perso3->mois}
-";
+echo '$perso1 : '." Genre : {$perso1->genre} | Age : {$perso1->age} | Mois : {$perso1->mois}<br>";
+echo '$perso2 : '." Genre : {$perso2->genre} | Age : {$perso2->age} | Mois : {$perso2->mois}<br>";
+echo '$perso3 : '." Genre : {$perso3->genre} | Age : {$perso3->age} | Mois : {$perso3->mois}<br>";
 ?>
 </body>
 </html>

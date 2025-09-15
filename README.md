@@ -745,7 +745,7 @@ class MaClasse {
 
 #### 2.9. Les interfaces
 
-Une interface est une classe abstraite qui ne contient que des méthodes abstraites. Elle est utilisée pour définir des méthodes qui seront implémentées par des classes enfants.
+Une interface est une classe abstraite qui ne contient que des méthodes abstraites. Elle est utilisée pour définir des méthodes qui seront implémentées par des classes enfants. Le mot abstract est donc inutile.
 
 Pour définir une interface, utilisez le mot clé `interface` :
 
@@ -755,23 +755,23 @@ interface MaInterface {
 }
 ```
 
-Une interface peut contenir que des méthodes abstraites. Une méthode abstraite est une méthode qui n'a pas de corps. Elle est définie avec le mot clé `abstract` et ne peut pas être définie avec les mots clés `private`, `protected` ou `final` (final sera abordé plus loin).
+Une interface contient des méthodes obligatoires
 
 ```php  
 interface MaInterface {
-    // Méthode abstraite
-    abstract public function methodeAbstraite();
+    // Méthode 
+    public function methode();
     
 }
 ```
 
-Une interface peut être implémentée par une classe. La classe doit définir toutes les méthodes abstraites de l'interface.
+Une interface peut être implémentée par une classe. La classe doit définir toutes les méthodes de l'interface.
 
 ```php
 class MaClasse implements MaInterface {
     // Code de la classe
-    public function methodeAbstraite() {
-        // Code de la méthode abstraite
+    public function methode() {
+        // Code de la méthode
     }
 }
 ```
@@ -781,8 +781,8 @@ Une classe peut implémenter plusieurs interfaces. Dans ce cas, les interfaces s
 ```php
 class MaClasse implements MaInterface1, MaInterface2 {
     // Code de la classe
-    public function methodeAbstraite() {
-        // Code de la méthode abstraite
+    public function methode() {
+        // Code de la méthode
     }
 }
 ```
