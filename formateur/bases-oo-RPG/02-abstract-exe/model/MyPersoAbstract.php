@@ -2,8 +2,10 @@
 
 abstract class MyPersoAbstract{
     // properties
+    private ?int $id=null;
     protected ?string $name=null;
     protected ?string $espece_perso=null;
+    protected ?string $style_perso=null;
 
     protected int $vie = 1000;
     protected int $xp = 0;
@@ -15,25 +17,39 @@ abstract class MyPersoAbstract{
     public const array CHOIX_ESPECE = [
         "Humain",
         "Elfe",
-        "Nain",
         "Orc",
-        "Hobbit",
-        "Gobelin",
+    ];
+    public const array CHOIX_STYLE = [
+        "Guerrier",
+        "Archer",
+        "Magicien blanc",
+        "Mâge Noir",
     ];
 
     // constructeur commun
-    public function __construct(string $nom, string $espece){
+    public function __construct(string $nom, string $espece, string $style){
         $this->setName($nom);
+        $this->setEspecePerso($espece);
+        $this->setStylePerso($style);
     }
 
     // méthodes abstraites
     abstract public function attaquer(MyPersoAbstract $other);
     abstract protected function initialisePerso();
-    abstract protected function gagner();
-
+    abstract protected function blesser();
 
 
     // getters and setters
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function setId(?int $id): void
+    {
+        $this->id = $id;
+    }
+
 
     public function getName(): ?string
     {
@@ -57,15 +73,6 @@ abstract class MyPersoAbstract{
         $this->name = $name;
     }
 
-    public function getVie(): int
-    {
-        return $this->vie;
-    }
-
-    public function setVie(int $vie): void
-    {
-        $this->vie = $vie;
-    }
 
     public function getEspecePerso(): ?string
     {
@@ -78,6 +85,30 @@ abstract class MyPersoAbstract{
             throw new Exception("Cette espèce n'est pas encore disponible!");
 
         $this->espece_perso = $espece_perso;
+    }
+
+    public function getStylePerso(): ?string
+    {
+        return $this->style_perso;
+    }
+
+
+    public function setStylePerso(?string $style_perso): void
+    {
+        if(!in_array($style_perso,self::CHOIX_STYLE))
+            throw new Exception("Ce style n'est pas encore disponible!");
+
+        $this->style_perso = $style_perso;
+    }
+
+    public function getVie(): int
+    {
+        return $this->vie;
+    }
+
+    public function setVie(int $vie): void
+    {
+        $this->vie = $vie;
     }
 
     public function getXp(): int
