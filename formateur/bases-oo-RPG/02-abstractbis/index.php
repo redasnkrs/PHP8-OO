@@ -29,7 +29,8 @@ require_once "model/MyPersoAbstract.php";
         <?php
         endforeach;
         ?>
-    </select>
+    </select><br>
+    <input type="submit" value="Créer l'utilisateur">
 </form>
 <?php
 /*
