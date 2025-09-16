@@ -8,6 +8,8 @@ abstract class MyPersoAbstract{
     protected ?string $style_perso=null;
 
     protected int $vie = 1000;
+    protected int $agilite = 30;
+    protected int $blesse = 40;
     protected int $xp = 0;
 
     // constantes
@@ -21,9 +23,8 @@ abstract class MyPersoAbstract{
     ];
     public const array CHOIX_STYLE = [
         "Guerrier",
-        "Archer",
-        "Magicien blanc",
-        "Mâge Noir",
+        "Voleur",
+        "Magicien",
     ];
 
     // constructeur commun
@@ -111,6 +112,24 @@ abstract class MyPersoAbstract{
         $this->vie = $vie;
     }
 
+    public function getAgilite(): int
+    {
+        return $this->agilite;
+    }
+
+    public function setAgilite(int $agilite): void
+    {
+        $this->agilite = $agilite;
+    }
+    public function getBlesse(): int
+    {
+        return $this->blesse;
+    }
+    public function setBlesse(int $blesse): void
+    {
+        $this->blesse = $blesse;
+    }
+
     public function getXp(): int
     {
         return $this->xp;
@@ -120,6 +139,8 @@ abstract class MyPersoAbstract{
     {
         $this->xp = $xp;
     }
+
+
 
 
 

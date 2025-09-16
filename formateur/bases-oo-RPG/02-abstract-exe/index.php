@@ -3,6 +3,11 @@
 declare(strict_types=1);
 
 require_once "model/MyPersoAbstract.php";
+require_once "model/HumainPerso.php";
+require_once "model/HumainMagicienBlanc.php";
+require_once "model/ElfePerso.php";
+require_once "model/ElfeMagicienBlanc.php";
+
 
 
 ?><!doctype html>
@@ -15,7 +20,22 @@ require_once "model/MyPersoAbstract.php";
     <title>Héritage et classes abstraites</title>
 </head>
 <body>
-<h1>Jeux</h1>
+<h1>Jeux - Exercices</h1>
+<p>Créez les classes suivantes :</p>
+<ul>
+    <li>MyPersoAbstract</li>
+    <li>OrcPerso</li>
+    <li>OrcMagicienBlanc</li>
+    <li>ElfeGuerrier</li>
+    <li>HumainGuerrier</li>
+    <li>OrcGuerrier</li>
+    <li>ElfeVoleur</li>
+    <li>HumainVoleur</li>
+    <li>OrcVoleur</li>
+</ul>
+<h2>Permettre de faire des combats entre deux personnages</h2>
+<p>Ces combats devront avoir une fin (quand la vie arrive à 0)</p>
+<p>Le combat durera tant qu'un des deux personnages n'est pas mort</p>
 <h2>Choisissez votre personnage</h2>
 <form action="" method="post" name="perso">
     <fieldset>
@@ -34,7 +54,7 @@ require_once "model/MyPersoAbstract.php";
             endforeach;
             ?>
         </select>
-        <label for="espece">Chacun a ses avantages/inconvénients</label>
+        <label for="espece">Chacun a ses avantages/inconvénients (choix personnels)</label>
         <hr>
         <legend>Choix du style</legend>
         <select name="style_perso" id="style">
@@ -53,12 +73,14 @@ require_once "model/MyPersoAbstract.php";
     </fieldset>
 </form>
 <?php
-/*
-$perso1 = new MyPerso("Pierre");
-$perso2 = new MyPersoMagicien("Mike");
 
+$perso1 = new HumainMagicienBlanc("mickey","Humain","Magicien");
 
-echo MyPerso::DES_DE_DOUZE;*/
+$perso2 = new ElfeMagicienBlanc("Magib","Elfe","Magicien");
+
+echo "{$perso1->attaquer($perso2)}";
+
+var_dump($perso1,$perso2);
 ?>
 <hr>
 <h3>Les descendants</h3>
