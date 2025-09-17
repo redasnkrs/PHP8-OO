@@ -1,12 +1,20 @@
 <?php
 // on désactive le transtypage (typage strict).
 declare(strict_types=1);
-
 require_once "model/MyPersoAbstract.php";
+
+// Humain
 require_once "model/HumainPerso.php";
 require_once "model/HumainMagicienBlanc.php";
+require_once "model/HumainGuerrier.php";
+
+// Elfe
 require_once "model/ElfePerso.php";
 require_once "model/ElfeMagicienBlanc.php";
+require_once "model/ElfeGuerrier.php";
+require_once "model/ElfeVoleur.php";
+
+//orc
 require_once "model/OrcPerso.php";
 require_once "model/OrcMagicienBlanc.php";
 require_once "model/OrcGuerrier.php";

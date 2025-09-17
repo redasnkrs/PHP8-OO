@@ -14,15 +14,15 @@ class HumainGuerrier extends MyPersoAbstract
       mt_rand(1, self::DES_DE_SIX);
     $this->setAttaque($attaque);
     // sortie texte
-    $string = "<h3>Création du personnage Humain Guerrier nommé {$this->getName}</h3>";
-    $string .= "<p>Points de vie {$this->getVie}<br>Agilité {$this->getAgilite}<br>Attaque {$this->getAttaque}<br>
-      blessé {$this->getBlesse}<br>XP {$this->getXp}";
+    $string = "<h3>Création du personnage Humain Guerrier nommé {$this->getName()}</h3>";
+    $string .= "<p>Points de vie {$this->getVie()}<br>Agilité {$this->getAgilite()}<br>Attaque {$this->getAttaque()}<br>
+      blessé {$this->getBlesse()}<br>XP {$this->getXp()}";
     echo $string;
   }
 
   public function attaquer(MyPersoAbstract $other)
   {
-    $string = "<b> {$this->getName} Attaque {$other->getName}<b><br>";
+    $string = "<b> {$this->getName()} Attaque {$other->getName()}<b><br>";
   }
 
   public function blesser()
