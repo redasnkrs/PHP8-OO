@@ -49,7 +49,7 @@ Il s'agit donc de représenter ces objets et leurs relations. L'interaction entr
     - [4. Auto-chargement des classes](#4-auto-chargement-des-classes)
     - [5. Les exceptions](#5-les-exceptions)
     - [6. Le mapping de tables SQL en classes PHP](#6-le-mapping-de-tables-sql-en-classes-php)
-      - [6.1 Utilisation d'une classe abstraite](#61-utilisation-d'une-classe-abstraite)
+      - [6.1 Utilisation d'une classe abstraite](#61-utilisation-dune-classe-abstraite)
     - [7. Les Managers](#7-les-managers)
 
 ---
@@ -1172,6 +1172,13 @@ class User {
     
 }
 ```
+
+---
+
+[Menu de navigation](#menu-de-navigation)
+
+---
+
 
 #### 6.1 Utilisation d'une classe abstraite
 
