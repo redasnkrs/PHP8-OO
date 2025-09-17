@@ -1115,17 +1115,17 @@ try {
 
 Le mapping de tables SQL en classes PHP est utilisé pour mapper les tables SQL en classes PHP. Cela permet de manipuler les données de la base de données en utilisant des objets.
 
-Prenons un exemple simple avec une table `users` :
+Prenons un exemple simple avec une table `user` :
 
 ```sql
-CREATE TABLE users (
+CREATE TABLE user (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(255) NOT NULL
 );
 ```
 
-Nous allons créer une classe `User` qui va représenter la table `users` :
+Nous allons créer une classe `User` qui va représenter la table `user` :
 
 ```php
 class User {
@@ -1211,6 +1211,51 @@ class AbstractModel
             }
         }
     }
+}
+```
+
+Ce qui donnera pour le cas `User`
+
+```php
+class User extends AbstractModel {
+
+    // Propriétés
+    private int $id;
+    private string $name;
+    private string $email;
+    
+    // Constructeur
+    public function __construct(array $tab) {
+        $this->hydrate($tab);
+    }
+    // getters
+    public function getId() {
+        return $this->id;
+    }
+    
+    public function getName() {
+        return $this->name;
+    }
+    
+    public function getEmail() {
+        return $this->email;
+    }
+    
+    // setters
+    public function setId(int $id) {
+        $this->id = $id;
+    }
+    
+    public function setName(string $name) {
+        $this->name = trim(strip_tags($name));
+    }
+    
+    public function setEmail(string $email) {
+        $this->email = filter_var($email, 
+        FILTER_VALIDATE_EMAIL));
+    }
+    
+    
 }
 ```
 
