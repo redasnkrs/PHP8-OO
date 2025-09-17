@@ -1010,6 +1010,18 @@ $className2 = new MaClasse2();
 
 ```
 
+Voici une méthode plus complète gérant le `namespace` et l'auto-chargement des classes :
+
+```php
+// RACINE_PATH se trouve à la racine du projet,
+// par exemple dans config.php
+// avec const RACINE_PATH = __DIR__
+spl_autoload_register(function ($class) {
+    $class = str_replace('\\', '/', $class);
+    require RACINE_PATH.'/' .$class . '.php';
+});
+```
+
 La fonction d'auto-chargement peut être définie dans un fichier séparé. Dans ce cas, le fichier doit être inclus avant d'instancier une classe.
 
 ```php
