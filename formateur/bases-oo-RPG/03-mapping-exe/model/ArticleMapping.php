@@ -12,13 +12,16 @@ class ArticleMapping{
     // méthodes
 
     // constructeur
-    public function __construct(?int $id, ?string $title, ?string $date){
+    public function __construct(?int $id, ?string $title, ?string $slug,  ?string $text, ?string $date, null|bool|int $visible){
         // exemple de texte prouvant l'instanciation
         // echo __CLASS__." instanciée";
         // utilisation des setters
         $this->setId($id);
         $this->setArticleTitle($title);
+        $this->setArticleSlug($slug);
+        $this->setArticleText($text);
         $this->setArticleDate($date);
+        $this->setArticleVisibility($visible);
     }
 
     // getters et setters
@@ -69,7 +72,7 @@ class ArticleMapping{
             throw new Exception("Le slug ne peut être vide !");
         if(strlen($article_slug)<6)
             throw new Exception("Le slug est trop court !");
-        if(strlen($article_slug)>120)
+        if(strlen($article_slug)>125)
             throw new Exception("Le slug est trop long !");
 
         $this->article_slug = $article_slug;
@@ -119,7 +122,9 @@ class ArticleMapping{
     public function setArticleVisibility(bool|int|null $article_visibility): void
     {
         if(is_null($article_visibility)) return;
-        $article_visibility = (bool) $article_visibility;
+            $article_visibility = (bool) $article_visibility;
+            if($article_visibility===0)
+                throw new Exception("Visibilité non valide");
         $this->article_visibility = $article_visibility;
     }
 
