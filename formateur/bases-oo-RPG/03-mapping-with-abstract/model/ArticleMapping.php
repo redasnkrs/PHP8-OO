@@ -17,4 +17,7 @@ class ArticleMapping{
         echo __CLASS__." instanciée";
     }
 
+    // getters et setters
+
+
 }
