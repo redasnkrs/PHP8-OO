@@ -16,6 +16,12 @@ echo AbstractMapping::slugify($titre);
 <hr><h3>Mapping de la table article</h3>
 <p>On va instancier la classe ArticleMapping.php</p>
 <?php
-$article1 = new ArticleMapping();
+$article1 = new ArticleMapping(null,"Un titre");
+$article2 = new ArticleMapping(7,"Un deuxième titre");
+try {
+    $article3 = new ArticleMapping(null, "5");
+}catch(Exception $e){
+    echo $e->getMessage().' $article3 n\'est pas créé !';
+}
 
-var_dump($article1);
+var_dump($article1,$article2);

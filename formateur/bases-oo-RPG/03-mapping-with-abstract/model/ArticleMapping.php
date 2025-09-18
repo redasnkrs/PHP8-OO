@@ -12,9 +12,12 @@ class ArticleMapping{
     // méthodes
 
     // constructeur
-    public function __construct(){
+    public function __construct(?int $id, ?string $title){
         // exemple de texte prouvant l'instanciation
-        echo __CLASS__." instanciée";
+        // echo __CLASS__." instanciée";
+        // utilisation des setters
+        $this->setId($id);
+        $this->setArticleTitle($title);
     }
 
     // getters et setters
@@ -29,6 +32,26 @@ class ArticleMapping{
         if($id<=0)
             throw new Exception("L'id doit être positif");
         $this->id = $id;
+    }
+
+    public function getArticleTitle(): ?string
+    {
+        return $this->article_title;
+    }
+
+    // string de 120 max et 6 minimum sans tags, sans espace devant et derrière, caractères spéciaux encodés
+    public function setArticleTitle(?string $title): void
+    {
+        if(is_null($title)) return;
+        $titleClean = trim(htmlspecialchars(strip_tags($title)));
+        if(empty($titleClean))
+            throw new Exception("Le titre ne peut être vide !");
+        if(strlen($titleClean)<6)
+            throw new Exception("Le titre est trop court !");
+        if(strlen($titleClean)>120)
+            throw new Exception("Le titre est trop long !");
+
+        $this->article_title = $titleClean;
     }
 
 
