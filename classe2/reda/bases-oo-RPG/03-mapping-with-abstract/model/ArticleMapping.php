@@ -17,11 +17,14 @@ class ArticleMapping
     ?int $id,
     ?string $title,
     ?string $slug,
+    ?string $text,
     ?string $date,
   ) {
     $this->setId($id);
     $this->setArticleTitle($title);
     $this->setArticleSlug($slug);
+    $this->setArticleDate($date);
+    $this->setArticleText($text);
   }
 
   public function getId(): int
@@ -51,6 +54,7 @@ class ArticleMapping
   {
     if (is_null($title)) {
       $traitedTitle = trim(htmlspecialchars(strip_tags($title)));
+      return;
     }
     if (empty($traitedTitle)) {
       throw new Exception("Le titre de l'article ne doit pas être vide.");
