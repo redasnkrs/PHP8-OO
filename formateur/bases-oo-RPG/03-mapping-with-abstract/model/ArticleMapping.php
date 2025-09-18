@@ -12,12 +12,13 @@ class ArticleMapping{
     // méthodes
 
     // constructeur
-    public function __construct(?int $id, ?string $title){
+    public function __construct(?int $id, ?string $title, ?string $date){
         // exemple de texte prouvant l'instanciation
         // echo __CLASS__." instanciée";
         // utilisation des setters
         $this->setId($id);
         $this->setArticleTitle($title);
+        $this->setArticleDate($date);
     }
 
     // getters et setters
@@ -52,6 +53,74 @@ class ArticleMapping{
             throw new Exception("Le titre est trop long !");
 
         $this->article_title = $titleClean;
+    }
+
+    public function getArticleSlug(): ?string
+    {
+        return $this->article_slug;
+    }
+
+    // string de 125 max et 6 minimum sans tags, sans espace devant et derrière, caractères spéciaux encodés
+    public function setArticleSlug(?string $article_slug): void
+    {
+        if(is_null($article_slug)) return;
+        $article_slug = trim(htmlspecialchars(strip_tags($article_slug)));
+        if(empty($article_slug))
+            throw new Exception("Le slug ne peut être vide !");
+        if(strlen($article_slug)<6)
+            throw new Exception("Le slug est trop court !");
+        if(strlen($article_slug)>120)
+            throw new Exception("Le slug est trop long !");
+
+        $this->article_slug = $article_slug;
+    }
+
+    public function getArticleText(): ?string
+    {
+        return $this->article_text;
+    }
+
+    // minimum 20 caractères, sans tags, sans espace devant et derrière, caractères spéciaux encodés
+    public function setArticleText(?string $article_text): void
+    {
+        if(is_null($article_text)) return;
+        $article_text = trim(htmlspecialchars(strip_tags($article_text)));
+        if(empty($article_text))
+            throw new Exception("Le texte ne peut être vide !");
+        if(strlen($article_text)<20)
+            throw new Exception("Le texte est trop court !");
+
+        $this->article_text = $article_text;
+    }
+
+    public function getArticleDate(): ?string
+    {
+        return $this->article_date;
+    }
+
+    // doit être une date valide si remplie sinon erreur
+    public function setArticleDate(?string $article_date): void
+    {
+        if(is_null($article_date)) return;
+
+        $formatDate = strtotime($article_date);
+        if($formatDate=== false)
+            throw new Exception("La date n'est pas valide !");
+
+        $this->article_date = date("Y-m-d H:i:s",$formatDate);
+    }
+
+    public function getArticleVisibility(): bool|int|null
+    {
+        return $this->article_visibility;
+    }
+
+    // si int convertir en bool, si bool, attribuer la valeur
+    public function setArticleVisibility(bool|int|null $article_visibility): void
+    {
+        if(is_null($article_visibility)) return;
+        $article_visibility = (bool) $article_visibility;
+        $this->article_visibility = $article_visibility;
     }
 
 
