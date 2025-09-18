@@ -16,4 +16,6 @@ echo AbstractMapping::slugify($titre);
 echo "<hr><h3>Mapping de la table article</h3>
 <p>On va instancier la classe ArticleMapping</p>";
 
-var_dump(new ArticleMapping());
+$article1 = new ArticleMapping(1, "Mon premier article", "mon-premier-slug", "Le texte de mon premier article", "2024-6-10", true);
+
+var_dump($article1);
