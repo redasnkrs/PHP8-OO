@@ -19,12 +19,14 @@ class ArticleMapping
     ?string $slug,
     ?string $text,
     ?string $date,
+    null|bool|int $visibility,
   ) {
     $this->setId($id);
     $this->setArticleTitle($title);
     $this->setArticleSlug($slug);
     $this->setArticleDate($date);
     $this->setArticleText($text);
+    $this->setArticleVisibility($visibility);
   }
 
   public function getId(): int
@@ -110,17 +112,31 @@ class ArticleMapping
     return $this->article_date;
   }
 
-  public function setArticleDate(
-    ?string $date,
-    string $format = "Y-m-d",
-  ): string {
-    // transforme un string dans un format de date
-    $d = DateTime::createFromFormat($format, $date);
-
-    if ($d && $d->format($format) === $date) {
-      return "La date'{$date}' est un format valide'{$format}'.";
+  public function setArticleDate(?string $date, string $format = "Y-m-d"): void
+  {
+    if (is_null($date)) {
+      throw new Exception("La date ne peut être vide.");
     }
 
-    return "La date '{$date}' n'est pas un format valide'{$format}'.";
+    // transforme un string dans un format de date
+    $d = DateTime::createFromFormat($format, $date);
+    if ($d && $d->format($format) === $date) {
+      return;
+    }
+  }
+
+  public function getArticleVisibility(): null|bool|int
+  {
+    return $this->article_visibility;
+  }
+
+  public function setArticleVisibility(null|bool|int $visibility): void
+  {
+    if (!is_bool($visibility) || ($visibility !== 0 && $visibility !== 1)) {
+      throw new Exception(
+        "La valeur doit être de type bool ou être égal a 0 | 1",
+      );
+    }
+    $this->article_visibility = $visibility;
   }
 }
