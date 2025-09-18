@@ -20,7 +20,7 @@ abstract class AbstractMapping
         foreach ($datas as $setter=>$value){
 
             // création du nom du setter
-            $setterName = "set".str_replace("_","",ucfirst($setter));
+            $setterName = "set".str_replace("_","",ucwords($setter, '_'));
             echo "$setterName => $value <br>";
         }
     }
