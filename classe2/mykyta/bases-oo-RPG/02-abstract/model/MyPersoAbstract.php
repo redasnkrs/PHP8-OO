@@ -20,8 +20,4 @@ abstract class MyPersoAbstract{
     function getName(): ?string{
         return $this -> name;
     }
-
-    function setName(?string $name): void{
-        $this = name -> $name;
-    }
 }
