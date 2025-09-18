@@ -12,7 +12,13 @@ class   ArticleMapping
 
  
  
-    public function __construct(){
+    public function __construct($id, $article_title, $article_slug, $article_text, $article_date, $article_visibility ){
+        $this->setId($id);
+        $this->setArticleTitle($article_title);
+        $this->setArticleSlug($article_slug);
+        $this->setArticleText($article_text);  
+        $this->setArticleDate($article_date);
+        $this->setArticleVisibility($article_visibility);
         echo __CLASS__. "instancié";
     }
      public function getId(): ?int
@@ -112,10 +118,8 @@ class   ArticleMapping
         if(is_int($article_visibility)) {
             $article_visibility = (bool)$article_visibility;
         }   
-        if(!is_bool($article_visibility)) {
-            throw new Exception("La visibilité de l'article n'est pas valide");
-        }
         
+
         $this->article_visibility = $article_visibility;
        
     }
