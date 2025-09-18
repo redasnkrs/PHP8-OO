@@ -1224,10 +1224,6 @@ class User extends AbstractModel {
     private string $name;
     private string $email;
     
-    // Constructeur
-    public function __construct(array $tab) {
-        $this->hydrate($tab);
-    }
     // getters
     public function getId() {
         return $this->id;
