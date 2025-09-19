@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 
 require_once "../config.php";
 
@@ -16,6 +16,12 @@ echo AbstractMapping::slugify($titre);
 <hr><h3>Mapping de la table article</h3>
 <p>On va instancier la classe ArticleMapping.php</p>
 <?php
-$article1 = new ArticleMapping();
+// ?int $id, ?string $title, ?string $slug,  ?string $text, ?string $date, null|bool|int $visible
+$article1 = new ArticleMapping(null,"Un titre","un-titre","de texte au moins 20 caractères si je me souviens bien...",'2022-01-01 13:00:00',true);
+try{
+    $article2 = new ArticleMapping(null,"Un titre","un-titre","de texte au moins 20 caractères si je me souviens bien...",'2025',3);
+}catch(Exception $e){
+    echo $e->getMessage();
+}
 
-var_dump($article1);
+var_dump($article1,$article2);
