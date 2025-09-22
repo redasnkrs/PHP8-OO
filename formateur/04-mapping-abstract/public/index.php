@@ -61,11 +61,6 @@ var_dump($article1);
 ?>
 <p>Créez un article via ce formulaire</p>
 
-<?php
-
-if(isset($articleInsert)) var_dump($articleInsert);
-
-?>
 
 <form action="" method="post">
     <div>
@@ -92,6 +87,10 @@ if(isset($articleInsert)) var_dump($articleInsert);
         <button type="submit">Créer l'article</button>
     </div>
 </form>
+<?php
 
+if(isset($articleInsert)) var_dump($articleInsert);
+
+?>
 </body>
 </html>
