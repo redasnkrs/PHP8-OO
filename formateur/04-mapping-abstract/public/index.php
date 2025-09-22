@@ -16,6 +16,8 @@ try {
     );
         // activation de l'affichage des erreurs
         $connectPDO->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+        // on va mettre nos résultats en FETCH_ASSOC
+        $connectPDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 }catch(Exception $e){
     die($e->getMessage());
 
@@ -29,12 +31,31 @@ if(!empty($_POST)){
         // si on ne la coche pas, la clef n'existe pas
         // on va donc la créer avec une valeur de 0
         if(!isset($_POST['article_visibility'])){
-            $_POST['article_visibility'] = 0;
+            $_POST['article_visibility'] = false;
         }
+        // création d'un article depuis le formulaire
         $articleInsert = new ArticleMapping($_POST);
+        // comme le titre n'est pas transformé en slug,
+        // on récupère le titre $articleInsert->getArticleTitle(),
+        // on le décode de l'html (pour récupérer le ' et " etc...)
+        // avec html_entity_decode()
+        // on le slugifie avec la méthode publique venant de
+        // la classe abstraite $articleInsert->slugify();
+        $slug = $articleInsert->slugify(html_entity_decode($articleInsert->getArticleTitle()));
+        // mise à jour de l'objet avant son insertion dans la DB
+        $articleInsert->setArticleSlug($slug);
+        // exercice 1 Insérez l'article dans la table article
+
+        // ICI
+
+
     }catch(Exception $e){
         echo $e->getMessage();
     }
+// formulaire non envoyé Exercice 2
+}else{
+    // récupérez tous les articles dont article_visibility vaut 1 par article_date DESC
+    // faites-en des objets de type ArticleMapping
 }
 ?>
 <!doctype html>
@@ -59,6 +80,9 @@ $article1 = new ArticleMapping([
 ]);
 var_dump($article1);
 ?>
+<h2>Nos articles</h2>
+<p>Affichage de nos articles en utilisant les getters des objets de type ArticleMapping</p>
+
 <p>Créez un article via ce formulaire</p>
 
 
@@ -66,10 +90,6 @@ var_dump($article1);
     <div>
         <label for="article_title">Title:</label>
         <input type="text" id="article_title" name="article_title" value="Mon titre d'article">
-    </div>
-    <div>
-        <label for="article_slug">Slug:</label>
-        <input type="text" id="article_slug" name="article_slug" value="mon-titre-d-article">
     </div>
     <div>
         <label for="article_text">Text:</label>
@@ -84,13 +104,14 @@ var_dump($article1);
         <input type="checkbox" id="article_visibility" name="article_visibility" value="1" checked>
     </div>
     <div>
+        <input type="hidden" name="verifyID" value="csfr4567345758757">
         <button type="submit">Créer l'article</button>
     </div>
 </form>
 <?php
 
 if(isset($articleInsert)) var_dump($articleInsert);
-
+var_dump($_POST);
 ?>
 </body>
 </html>

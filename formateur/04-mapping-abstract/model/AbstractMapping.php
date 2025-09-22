@@ -7,12 +7,14 @@ abstract class AbstractMapping
     // création d'un constructeur pour tous les enfants
     public function __construct(array $datas)
     {
+        // appel de l'hydratation
         $this->hydrate($datas);
 
     }
 
     /* création d'une méthode d'hydratation, c'est-à-dire de
     mettre des valeurs aux propriétés en utilisant les setters
+    existants
     */
     protected function hydrate(array $datas)
     {
@@ -21,7 +23,16 @@ abstract class AbstractMapping
 
             // création du nom du setter
             $setterName = "set".str_replace("_","",ucwords($setter, '_'));
-            echo "$setterName => $value <br>";
+            //echo "$setterName => $value <br>";
+            // on vérifie l'existence du setter
+            if(method_exists($this,$setterName)){
+                //echo "$setterName => $value existe<br>";
+                // utilisation d'un setter existant dans la classe enfant
+                $this->$setterName($value);
+            }/*else{
+                echo "$setterName => $value n'existe pas <br>";
+            }
+            */
         }
     }
 
