@@ -113,9 +113,8 @@ class ArticleMapping extends AbstractMapping {
     {
         if(is_null($article_visibility)) return;
             $article_visibility = (bool) $article_visibility;
-            if($article_visibility===0)
-                throw new Exception("Visibilité non valide");
-        $this->article_visibility = $article_visibility;
+
+            $this->article_visibility = $article_visibility;
     }
 
 
