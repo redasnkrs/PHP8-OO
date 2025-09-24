@@ -82,6 +82,8 @@ try{
         ORDER BY `article_date` DESC;
     ");
     $recup = $select->fetchAll();
+    // bonne pratique
+    $select->closeCursor();
     // on va créer des objets de type ArticleMapping
     foreach ($recup as $valeur){
         // double boucle
@@ -92,6 +94,7 @@ try{
     echo $e->getMessage();
 }
 
+$connectPDO = null;
 
 ?>
 <!doctype html>
