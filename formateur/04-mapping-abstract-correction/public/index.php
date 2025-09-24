@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 require_once "../config.php";
 
+//echo RACINE_PATH; // racine du site
+//echo __DIR__; // partie public
+
 // utilisation de la racine pour construire nos include, require etc.
 require_once RACINE_PATH."/model/AbstractMapping.php";
 require_once RACINE_PATH."/model/ArticleMapping.php";
@@ -60,7 +63,7 @@ if(!empty($_POST)) {
         $stmt->bindValue("slug", $articleInsert->getArticleSlug());
         $stmt->bindValue("text", $articleInsert->getArticleText());
         $stmt->bindValue("date", $articleInsert->getArticleDate());
-        $stmt->bindValue("visibility", $articleInsert->getArticleVisibility());
+        $stmt->bindValue("visibility", $articleInsert->getArticleVisibility(),PDO::PARAM_INT);
 
         $stmt->execute();
 
@@ -84,12 +87,10 @@ try{
         // double boucle
         $resultats[]= new ArticleMapping($valeur);
     }
-    var_dump($resultats);
+    //var_dump($resultats);
 }catch (Exception $e){
     echo $e->getMessage();
 }
-
-
 
 
 ?>
@@ -120,8 +121,9 @@ $pluriel = $nbArticle > 1 ? "s" : "";
 <?php
 foreach($resultats as $item):
 ?>
-<h4><?=html_entity_decode($item->getArticleTitle())?></h4>
-<h1>On est ici</h1>
+    <h4><a href="./?article=<?=$item->getArticleSlug()?>"><?=html_entity_decode($item->getArticleTitle())?></a></h4>
+<h5>Ecrit le <?=$item->getArticleDate()?></h5>
+<p><?=nl2br(html_entity_decode($item->getArticleText()))?></p>
 <?php
 endforeach;
 ?>

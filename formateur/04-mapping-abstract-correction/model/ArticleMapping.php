@@ -1,6 +1,6 @@
 <?php
 
-class ArticleMapping extends AbstractMapping {
+class ArticleMapping extends AbstractMapping{
     // propriétés = champs de la table
     protected ?int $id=null; // entier positif
     protected ?string $article_title=null; // string de 120 max et 6 minimum sans tags, sans espace devant et derrière, caractères spéciaux encodés
@@ -52,6 +52,7 @@ class ArticleMapping extends AbstractMapping {
     {
         return $this->article_slug;
     }
+
 
     // string de 125 max et 6 minimum sans tags, sans espace devant et derrière, caractères spéciaux encodés
     public function setArticleSlug(?string $article_slug): void

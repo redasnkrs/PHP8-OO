@@ -38,7 +38,6 @@ abstract class AbstractMapping
     }
 
 
-
     // transforme un titre en slug, sera hérité
     public function slugify(string $text, string $separator = '-'): string
     {
