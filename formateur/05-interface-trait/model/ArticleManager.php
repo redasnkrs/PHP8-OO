@@ -8,23 +8,25 @@ class ArticleManager implements ManagerInterface, CrudInterface
         $this->db = $connect;
     }
 
-    public function create()
+    public function create(AbstractMapping $data)
     {
         // TODO: Implement create() method.
     }
 
-    public function read()
+    public function read(int $id)
     {
         // TODO: Implement read() method.
     }
 
-    public function update()
+    public function update(int $id, AbstractMapping $data)
     {
         // TODO: Implement update() method.
     }
 
-    public function delete()
+    public function delete(int $id)
     {
         // TODO: Implement delete() method.
     }
+
+
 }

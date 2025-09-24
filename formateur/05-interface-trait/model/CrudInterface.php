@@ -2,8 +2,8 @@
 
 interface CrudInterface
 {
-    public function create();
-    public function read();
-    public function update();
-    public function delete();
+    public function create(AbstractMapping $data);
+    public function read(int $id);
+    public function update(int $id, AbstractMapping $data);
+    public function delete(int $id);
 }
