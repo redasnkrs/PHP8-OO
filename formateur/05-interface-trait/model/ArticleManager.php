@@ -13,10 +13,6 @@ class ArticleManager implements ManagerInterface, CrudInterface
         // TODO: Implement create() method.
     }
 
-    public function read(int $id)
-    {
-        // TODO: Implement read() method.
-    }
 
     public function update(int $id, AbstractMapping $data)
     {
@@ -29,4 +25,13 @@ class ArticleManager implements ManagerInterface, CrudInterface
     }
 
 
+    public function readById(int $id)
+    {
+        // TODO: Implement readById() method.
+    }
+
+    public function readAll()
+    {
+        // TODO: Implement readAll() method.
+    }
 }
