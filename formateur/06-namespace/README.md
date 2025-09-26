@@ -13,4 +13,4 @@
 
 - Créez la suppression d'`article`, avec un message de confirmation
 - Créez la page d'update de l'`article`, avec un formulaire qui est vérifié avec les setters de `ArticleMapping`, et qui met bien à jour l'article
-- Crées la page d'insertion, qui n'insère qu'un `Article` valide en créant le `slug`
+- Créez la page d'insertion, qui n'insère qu'un `Article` valide en créant le `slug`
