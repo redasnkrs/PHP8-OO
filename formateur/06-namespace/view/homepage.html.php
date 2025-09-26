@@ -1,5 +1,5 @@
 <?php
-
+// view/homepage.html.php
 ?>
 <!doctype html>
 <html lang="fr">
