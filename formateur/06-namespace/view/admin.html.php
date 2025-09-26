@@ -26,18 +26,41 @@
         $pluriel = $nbArticle > 1? "s" : "";
     ?>
     <h3>Il y a <?=$nbArticle?> article<?=$pluriel?> </h3>
-        <?php
-        foreach ($nosArticle as $item):
-        ?>
-        <div id="article" class="article">
+
+        <table>
+            <thead>
+                <th>id</th>
+                <th>article_title</th>
+                <th>article_slug</th>
+                <th>article_text</th>
+                <th>article_date</th>
+                <th>article_visibility</th>
+                <th>update</th>
+                <th>delete</th>
+            </thead>
+            <?php
+                foreach ($nosArticle as $item):
+            ?>
+            <tr>
+                <td><?=$item->getId()?></td>
+                <td><?=html_entity_decode($item->getArticleTitle())?></td>
+                <td><?=$item->getArticleSlug()?></td>
+                <td><?=html_entity_decode(substr($item->getArticleText(),0,150))?></td>
+                <td><?=$item->getArticleDate()?></td>
+                <td><?=$item->getArticleVisibility()?></td>
+                <td><a href="?update=<?=$item->getId()?>">update</a></td>
+                <td><a href="?delete=<?=$item->getId()?>">delete</a></td>
+            </tr>
+            <?php
+                endforeach;
+            endif;
+            ?>
+        </table>
             <h3><?=html_entity_decode($item->getArticleTitle())?></h3>
             <h4>Écrit le <?=$item->getArticleDate()?></h4>
             <p><?=nl2br(html_entity_decode($item->getArticleText()))?></p>
         </div>
-    <?php
-        endforeach;
-    endif;
-    ?>
+
 <?php //var_dump($connectPDO,$ArticleManager,$nosArticle); ?>
 </body>
 </html>
