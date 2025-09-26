@@ -23,7 +23,9 @@ try {
  */
 // Instanciation du Manager d'ArticleMapping
 $ArticleManager = new ArticleManager($connectPDO);
+// récupération des articles visibles
 $nosArticle = $ArticleManager->readAllVisible();
+// appel de la vue
 include RACINE_PATH."/view/homepage.html.php";
 
 // fermeture de connexion

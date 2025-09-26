@@ -30,8 +30,12 @@ class ArticleManager implements ManagerInterface, CrudInterface
             $sql .= "ORDER BY `article_date` DESC";
         $query = $this->db->query($sql);
         $stmt = $query->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($stmt as $item){
+            // réutilisation des setters
+            $result[] = new ArticleMapping($item);
+        }
         $query->closeCursor();
-        return $stmt;
+        return $result;
     }
 
     public function update(int $id, AbstractMapping $data)
@@ -56,7 +60,11 @@ class ArticleManager implements ManagerInterface, CrudInterface
             $sql .= "ORDER BY `article_date` DESC";
         $query = $this->db->query($sql);
         $stmt = $query->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($stmt as $item){
+            // réutilisation des setters
+            $result[] = new ArticleMapping($item);
+        }
         $query->closeCursor();
-        return $stmt;
+        return $result;
     }
 }
