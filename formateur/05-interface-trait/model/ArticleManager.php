@@ -2,17 +2,37 @@
 
 class ArticleManager implements ManagerInterface, CrudInterface
 {
-    private $db;
-    public function __construct(PDO $connect)
-    {
+    private PDO $db;
+
+    // implémenté à cause de MangerInterface
+    public function __construct(PDO $connect){
         $this->db = $connect;
     }
 
+    /*
+     * méthodes implémentées à cause de CrudInterface
+     */
     public function create(AbstractMapping $data)
     {
         // TODO: Implement create() method.
     }
 
+    public function readById(int $id): bool|AbstractMapping
+    {
+        // TODO: Implement readById() method.
+    }
+
+    // récupération de tous nos articles
+    public function readAll(bool $orderDesc = true): array
+    {
+        $sql = "SELECT * FROM `article` ";
+        if($orderDesc===true)
+            $sql .= "ORDER BY `article_date` DESC";
+        $query = $this->db->query($sql);
+        $stmt = $query->fetchAll(PDO::FETCH_ASSOC);
+        $query->closeCursor();
+        return $stmt;
+    }
 
     public function update(int $id, AbstractMapping $data)
     {
@@ -24,14 +44,19 @@ class ArticleManager implements ManagerInterface, CrudInterface
         // TODO: Implement delete() method.
     }
 
+    /*
+     * Nos méthodes n'existant pas dans l'interface
+     */
 
-    public function readById(int $id)
+    // on souhaite ne récupérer que les articles visibles
+    public function readAllVisible(bool $orderDesc = true): array
     {
-        // TODO: Implement readById() method.
-    }
-
-    public function readAll()
-    {
-        // TODO: Implement readAll() method.
+        $sql = "SELECT * FROM `article` WHERE `article_visibility`=1 ";
+        if($orderDesc===true)
+            $sql .= "ORDER BY `article_date` DESC";
+        $query = $this->db->query($sql);
+        $stmt = $query->fetchAll(PDO::FETCH_ASSOC);
+        $query->closeCursor();
+        return $stmt;
     }
 }

@@ -12,6 +12,6 @@
 </head>
 <body>
     <h1>Page d'accueil</h1>
-<?php var_dump($connectPDO); ?>
+<?php var_dump($connectPDO,$ArticleManager,$nosArticle); ?>
 </body>
 </html>

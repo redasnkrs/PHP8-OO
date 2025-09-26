@@ -17,7 +17,13 @@ try {
 
 }
 
-// Page d'accueil
+/*
+ * Page d'accueil
+ * On souhaite y afficher tous nos articles qui sont visibles
+ */
+// Instanciation du Manager d'ArticleMapping
+$ArticleManager = new ArticleManager($connectPDO);
+$nosArticle = $ArticleManager->readAllVisible();
 include RACINE_PATH."/view/homepage.html.php";
 
 // fermeture de connexion
