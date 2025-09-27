@@ -32,33 +32,55 @@ if (isset($_GET['p'])) {
     switch ($_GET['p']) {
         case 'admin':
             $nosArticle = $ArticleManager->readAll();
-            include RACINE_PATH . "/view/admin.html.php";
-            break;
-            case 'create':
+
+            if (isset($_GET['update']) && is_numeric($_GET['update'])) {
+                $id = (int) $_GET['update'];
+                $articleToUpdate = $ArticleManager->readById($id);
+
+                if (!$articleToUpdate) {
+                    header('Location:?p=admin');
+                    exit();
+                }
+
                 if (!empty($_POST)) {
-                    // Le formulaire a été soumis
                     $article = new ArticleMapping($_POST);
-                    $createArticle = $ArticleManager->create($article);
-                    
-                    if ($createArticle === true) {
-                        // Succès de la création
+                    $article->setId($id);
+                    $updateArticle = $ArticleManager->update($id, $article);
+
+                    if ($updateArticle === true) {
                         header('Location:?p=admin');
                         exit();
-                    } 
+                    }
                 }
-                // Afficher le formulaire (que ce soit GET ou POST avec erreur)
-                include RACINE_PATH . "/view/admin.html.php";
-                break;
+            }
+
+            include RACINE_PATH . "/view/admin.html.php";
+            break;
+
+        case 'create':
+            if (!empty($_POST)) {
+                // Le formulaire a été soumis
+                $article = new ArticleMapping($_POST);
+                $createArticle = $ArticleManager->create($article);
+
+                if ($createArticle === true) {
+                    // Succès de la création
+                    header('Location:?p=admin');
+                    exit();
+                }
+            }
+            // Afficher le formulaire (que ce soit GET ou POST avec erreur)
+            include RACINE_PATH . "/view/admin.html.php";
+            break;
     }
 } elseif (isset($_GET['delete']) && is_numeric($_GET['delete'])) {
     $id = (int) $_GET['delete'];
     $deleteArticleById = $ArticleManager->delete($id);
     header('Location:?p=admin');
     exit();
-} elseif (isset($_GET['update'])) {
-    include RACINE_PATH . "/view/admin.html.php";
 } else {
     // récupération des articles visibles
+
     $nosArticle = $ArticleManager->readAllVisible();
     // appel de la vue
     include RACINE_PATH . "/view/homepage.html.php";

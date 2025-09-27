@@ -8,6 +8,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Page d'accueil</title>
+    <style>
+        body,*{
+            background-color: black !important;
+            color: white !important;
+        }
+    </style>
 </head>
 
 <body class="bg-gray-100 text-gray-800 font-sans">

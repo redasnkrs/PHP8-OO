@@ -7,6 +7,7 @@ use Exception;
 
 class ArticleManager implements ManagerInterface, CrudInterface
 {
+    use SlugifyTrait;
     private PDO $db;
 
     // implémenté à cause de MangerInterface
@@ -18,26 +19,41 @@ class ArticleManager implements ManagerInterface, CrudInterface
     /*
      * méthodes implémentées à cause de CrudInterface
      */
-    public function create(AbstractMapping $data): bool {
+    public function create(AbstractMapping $data): bool
+    {
+
+        $slug = $this->slugify($data->getArticleTitle());
+        $date = $data->getArticleDate(); 
+
 
         $sql = "INSERT INTO article (article_title, article_slug, article_text, article_date, article_visibility)
-                VALUES (:title, :slug, :text, :date, :visibility)";
+            VALUES (:title, :slug, :text, :date, :visibility)";
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':title', $data->getArticleTitle());
-        $stmt->bindValue(':slug', $data->getArticleSlug());
+        $stmt->bindValue(':slug', $slug);
         $stmt->bindValue(':text', $data->getArticleText());
-        $stmt->bindValue(':date', $data->getArticleDate());
+        $stmt->bindValue(':date', $date);
         $stmt->bindValue(':visibility', $data->getArticleVisibility(), PDO::PARAM_INT);
         return $stmt->execute();
     }
 
-    public function readById(int $id): bool|AbstractMapping
-    {
-        // TODO: Implement readById() method.
-        return $id;
+public function readById(int $id): bool|AbstractMapping
+{
+    $sql = "SELECT * FROM article WHERE id = :id";
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+
+    if ($result) {
+        return new ArticleMapping($result);
     }
 
-    // récupération de tous nos articles
+    return false;
+}
+
+
     public function readAll(bool $orderDesc = true): array
     {
         $sql = "SELECT * FROM `article` ";
@@ -53,9 +69,25 @@ class ArticleManager implements ManagerInterface, CrudInterface
         return $result;
     }
 
-    public function update(int $id, AbstractMapping $data)
+    public function update(int $id, AbstractMapping $data): bool
     {
-        // TODO: Implement update() method.
+        $slug = $this->slugify($data->getArticleTitle());
+
+
+        $sql = "UPDATE article SET 
+                article_title = :title,
+                article_slug = :slug,
+                article_text = :text,
+                article_visibility = :visibility
+            WHERE id = :id";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':title', $data->getArticleTitle());
+        $stmt->bindValue(':slug', $slug);
+        $stmt->bindValue(':text', $data->getArticleText());
+        $stmt->bindValue(':visibility', $data->getArticleVisibility(), PDO::PARAM_INT);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        return $stmt->execute();
     }
 
     public function delete(int $id): bool
