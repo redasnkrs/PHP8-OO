@@ -3,7 +3,7 @@
 namespace model;
 
 use Exception;
-use model\SlugifyTrait;
+
 class ArticleMapping extends AbstractMapping{
     // propriétés = champs de la table
     use SlugifyTrait;
