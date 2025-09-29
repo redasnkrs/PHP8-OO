@@ -70,7 +70,7 @@ if (isset($_GET['p'])) {
                 }
             }
             // Afficher le formulaire (que ce soit GET ou POST avec erreur)
-            include RACINE_PATH . "/view/admin.html.php";
+            include RACINE_PATH . "/view/admin.insert.html.php";
             break;
     }
 } elseif (isset($_GET['delete']) && is_numeric($_GET['delete'])) {
