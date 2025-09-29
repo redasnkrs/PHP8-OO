@@ -1,4 +1,9 @@
 <?php
+// création du namespace
+namespace model\Mapping;
+
+
+use Exception;
 
 class ArticleMapping extends AbstractMapping
 {
@@ -54,13 +59,14 @@ class ArticleMapping extends AbstractMapping
         return $this->article_slug;
     }
 
+
     // string de 125 max et 6 minimum sans tags, sans espace devant et derrière, caractères spéciaux encodés
     public function setArticleSlug(?string $article_slug): void
     {
         if (is_null($article_slug)) return;
         $article_slug = trim(htmlspecialchars(strip_tags($article_slug)));
         if (empty($article_slug))
-            throw new Exception("Le sl");
+            throw new Exception("Le slug ne peut être vide !");
         if (strlen($article_slug) < 6)
             throw new Exception("Le slug est trop court !");
         if (strlen($article_slug) > 125)
@@ -113,7 +119,8 @@ class ArticleMapping extends AbstractMapping
     public function setArticleVisibility(bool|int|null $article_visibility): void
     {
         if (is_null($article_visibility)) return;
-        $article_visibility = (bool) $article_visibility;
+        // cause erreur MariaDB
+        // $article_visibility = (bool) $article_visibility;
 
         $this->article_visibility = $article_visibility;
     }
