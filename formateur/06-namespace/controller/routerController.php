@@ -33,6 +33,25 @@ if(isset($_GET['p'])){
             $nosArticle = $ArticleManager->readAll();
             include RACINE_PATH . "/view/admin.html.php";
             break;
+        case 'create':
+
+            break;
+        case 'update':
+                if(!empty($_GET['id'])  && ctype_digit($_GET['id'])):
+                    include RACINE_PATH."/view/update.html.php";
+                else:
+                    $message = "Touche pas à mon code !";
+                    include RACINE_PATH."/view/404.html.php";
+                endif;
+            break;
+        case 'delete':
+            if(!empty($_GET['id'])  && ctype_digit($_GET['id'])):
+
+            else:
+                $message = "Touche pas à mon code !";
+                include RACINE_PATH."/view/404.html.php";
+            endif;
+            break;
     }
 
 }else {

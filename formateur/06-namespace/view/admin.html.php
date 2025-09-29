@@ -48,18 +48,15 @@
                 <td><?=html_entity_decode(substr($item->getArticleText(),0,150))?></td>
                 <td><?=$item->getArticleDate()?></td>
                 <td><?=$item->getArticleVisibility()?></td>
-                <td><a href="?update=<?=$item->getId()?>">update</a></td>
-                <td><a href="?delete=<?=$item->getId()?>">delete</a></td>
+                <td><a href="?p=update&id=<?=$item->getId()?>">update</a></td>
+                <td><a href="?p=delete&id=<?=$item->getId()?>">delete</a></td>
             </tr>
             <?php
                 endforeach;
             endif;
             ?>
         </table>
-            <h3><?=html_entity_decode($item->getArticleTitle())?></h3>
-            <h4>Écrit le <?=$item->getArticleDate()?></h4>
-            <p><?=nl2br(html_entity_decode($item->getArticleText()))?></p>
-        </div>
+
 
 <?php //var_dump($connectPDO,$ArticleManager,$nosArticle); ?>
 </body>
