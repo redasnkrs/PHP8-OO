@@ -1,6 +1,8 @@
 <?php
 // création du namespace
-namespace model;
+namespace model\Interfaces;
+
+
 
 // PDO n'est plus accessible dans cet espace de nom, on l'importe
 use PDO;

@@ -1,11 +1,13 @@
 <?php
 // création du namespace
-namespace model;
+namespace model\Traits;
 
 use Exception;
-trait SlugifyTrait{
 
-    public function slugify(string $text, $prefix=true, string $separator = '-'): string
+trait SlugifyTrait
+{
+
+    public function slugify(string $text, $prefix = true, string $separator = '-'): string
     {
         // 1. Remplacer les caractères non-alphanumériques par le séparateur
         // \p{L} correspond à n'importe quelle lettre dans n'importe quelle langue
@@ -38,7 +40,7 @@ trait SlugifyTrait{
         // on va rajouter un préfixe aléatoire avec des
         // caractères hexadécimaux pour éviter
         // les doublons
-        if($prefix===true) {
+        if ($prefix === true) {
             $text = bin2hex(random_bytes(2)) . "-" . $text;
         }
 

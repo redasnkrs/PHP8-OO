@@ -1,16 +1,19 @@
 <?php
 
 // création du namespace
-namespace model;
+namespace model\Mapping;
+
+
 
 abstract class AbstractMapping
 {
+
+    
     // création d'un constructeur pour tous les enfants
     public function __construct(array $datas)
     {
         // appel de l'hydratation
         $this->hydrate($datas);
-
     }
 
     /* création d'une méthode d'hydratation, c'est-à-dire de
@@ -20,11 +23,11 @@ abstract class AbstractMapping
     protected function hydrate(array $datas)
     {
         // tant qu'on a des données
-        foreach ($datas as $setter=>$value){
+        foreach ($datas as $setter => $value) {
 
             // création du nom du setter
-            $setterName = "set".str_replace("_","",ucwords($setter, '_'));
-            if(method_exists($this,$setterName)){
+            $setterName = "set" . str_replace("_", "", ucwords($setter, '_'));
+            if (method_exists($this, $setterName)) {
 
                 $this->$setterName($value);
             }
