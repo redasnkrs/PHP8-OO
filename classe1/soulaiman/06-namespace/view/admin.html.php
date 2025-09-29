@@ -8,7 +8,7 @@
         <style>
         body, *{
             background-color: black !important;
-            /* color: white ; */
+            color: white ;
         }
     </style>
     <title>Administration</title>
@@ -21,6 +21,7 @@
             <a href="./" class="hover:underline">Accueil</a>
             <a href="?p=admin" class="hover:underline">Administration</a>
             <a href="?p=create" class="hover:underline">Création d'un nouvel article</a>
+            <a href="?p=deconnexion" class="hover:underline">Deconnexion</a>
         </nav>
 
         <?php if ($_GET['p'] === 'create'): ?>
