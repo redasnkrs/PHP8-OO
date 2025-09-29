@@ -103,10 +103,11 @@ class ArticleMapping extends AbstractMapping{
         if(is_null($article_date)) return;
 
         $formatDate = strtotime($article_date);
-        if($formatDate=== false)
-            throw new Exception("La date n'est pas valide !");
-
-        $this->article_date = date("Y-m-d H:i:s",$formatDate);
+        if($formatDate=== false) {
+            $this->article_date = date("Y-m-d H:i:s");
+        }else {
+            $this->article_date = date("Y-m-d H:i:s", $formatDate);
+        }
     }
 
     public function getArticleVisibility(): bool|int|null

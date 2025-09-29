@@ -37,7 +37,7 @@ if(isset($_GET['p'])){
             if(isset($_POST)&&!empty($_POST)){
                 $article = new ArticleMapping($_POST);
                 $ArticleManager->create($article);
-                header('Location: ?p=homepage.html.php');
+                header('Location: ./');
                 exit;
             }
             include RACINE_PATH . "/view/create.html.php";
@@ -52,6 +52,9 @@ if(isset($_GET['p'])){
     if(isset($_POST)&&!empty($_POST)){
 
     $article = new ArticleMapping($_POST);
+
+
+
     $ArticleManager->update((int)$_GET['update'],$article);
     header('Location: ?p=admin');
     exit;

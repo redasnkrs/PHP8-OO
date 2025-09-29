@@ -49,9 +49,9 @@
           <td><?=$item->getArticleSlug()?></td>
           <td><?=html_entity_decode(substr($item->getArticleText(),0,150))?></td>
           <td><?=$item->getArticleDate()?></td>
-          <td><?=$item->getArticleVisibility()?></td>
+          <td><?= $item->getArticleVisibility()? 1 : 0; ?></td>
           <td><a href="?update=<?=$item->getId()?>" class="btn btn-sm btn-warning">Update</a></td>
-          <td><a onclick="return confirm('Confirmer la suppression ?')" href="?delete=<?=$item->getId()?>" class="btn btn-sm btn-danger">Delete</a></td>
+          <td><a onclick="if(confirm('Confirmer la suppression ?')){ window.location.href = './?delete=<?=$item->getId()?>'; }"  class="btn btn-sm btn-danger">Delete</a></td>
         </tr>
         <?php endforeach; ?>
       </tbody>

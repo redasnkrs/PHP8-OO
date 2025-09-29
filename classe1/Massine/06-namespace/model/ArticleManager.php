@@ -77,6 +77,7 @@ class ArticleManager implements ManagerInterface, CrudInterface
     {
         $sql = 'DELETE FROM `article` WHERE id=?';
         $stmt = $this->db->prepare($sql);
+        $stmt->execute([$id]);
     }
 
     /*

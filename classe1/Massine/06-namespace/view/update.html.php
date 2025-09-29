@@ -31,7 +31,7 @@
     </div>
 
     <div class="col-md-6 form-check mt-4">
-      <input type="checkbox" name="article_visibility" id="article_visibility" value="<?=$monArticle->getArticleVisibility()?>" checked class="form-check-input">
+      <input type="checkbox" name="article_visibility" id="article_visibility" value="1" <?= $monArticle->getArticleVisibility()? "checked" : ""; ?> class="form-check-input">
       <label for="article_visibility" class="form-check-label">Visible</label>
     </div>
 
