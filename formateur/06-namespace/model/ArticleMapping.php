@@ -15,6 +15,8 @@ class ArticleMapping extends AbstractMapping{
 
     // méthodes
 
+
+
     // constructeur et hydratation dans AbstractMapping
 
 

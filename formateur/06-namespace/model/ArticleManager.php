@@ -9,10 +9,14 @@ class ArticleManager implements ManagerInterface, CrudInterface
 {
     private PDO $db;
 
+
     // implémenté à cause de MangerInterface
     public function __construct(PDO $connect){
         $this->db = $connect;
     }
+
+    // Appel du Trait pour slugifier le titre
+    use SlugifyTrait;
 
     /*
      * méthodes implémentées à cause de CrudInterface

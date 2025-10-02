@@ -41,6 +41,16 @@ if(isset($_GET['p'])){
                 try {
                     // utilisation des setters
                     $newArticle = new ArticleMapping($_POST);
+                    // pas de faute création du slug
+                    // qui est importé par 'use SlugifyTrait'
+                    // dans ArticleManager, on décode l'htmspecialchars
+                    // pour éviter des caractères parasites dans le nom
+                    // du slug
+                    $slug = $ArticleManager->slugify(html_entity_decode($newArticle->getArticleTitle()));
+                    // on utilise le setter d'Article pour mettre
+                    // à jour article_slug
+                    $newArticle->setArticleSlug($slug);
+
 
                 }catch (Exception $e){
                     die($e->getMessage());
