@@ -51,6 +51,16 @@ if(isset($_GET['p'])){
                     // à jour article_slug
                     $newArticle->setArticleSlug($slug);
 
+                    // on veut insérer l'article
+                    $ok = $ArticleManager->create($newArticle);
+                    if($ok === true){
+                        // redirection vers la page d'admin
+                        header("Location: ./?p=admin");
+                        exit;
+                    }else{
+                        // erreur lors de l'insertion
+                        $message = $ok;
+                    }
 
                 }catch (Exception $e){
                     die($e->getMessage());

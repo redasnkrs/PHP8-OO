@@ -16,6 +16,13 @@
         <a href ="./">Accueil</a> | <a href ="./?p=admin">Administration</a>
     </nav>
     <h2>Création d'un nouvel article</h2>
+    <?php
+    if(isset($message)):
+        ?>
+        <p style="color:red; font-weight: bold;"><?=$message?></p>
+    <?php
+    endif;
+    ?>
     <form action="" method="post" name="name">
         <label for="article_title">Titre de l'article</label><br>
         <input type="text" name="article_title" id="article_title" required><br><br>
@@ -32,6 +39,9 @@
         <input type="submit" value="Créer l'article">
         
     </form>
-<?php var_dump($_POST,$newArticle); ?>
+<?php var_dump($_POST);
+// si on a soumis le formulaire
+if(isset($newArticle)) var_dump($newArticle);
+?>
 </body>
 </html>

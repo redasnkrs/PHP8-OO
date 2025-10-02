@@ -3,6 +3,7 @@
 namespace model;
 
 use PDO;
+use Exception;
 
 // implémentation de 2 interfaces
 class ArticleManager implements ManagerInterface, CrudInterface
@@ -20,10 +21,26 @@ class ArticleManager implements ManagerInterface, CrudInterface
 
     /*
      * méthodes implémentées à cause de CrudInterface
+     * AbstractMapping est le parent de tous nos
+     * mapping, c'est-à-dire données où on applique un CRUD
+     * dans notre cas une bdd MySQL
      */
-    public function create(AbstractMapping $data)
+    public function create(AbstractMapping $data): bool|string
     {
-        // TODO: Implement create() method.
+        $sql = "INSERT INTO `article` (`article_title`, `article_slug`, `article_text`, `article_visibility`) VALUES (?,?,?,?)";
+        $prepare = $this->db->prepare($sql);
+        try {
+            $prepare->execute([
+                $data->getArticleTitle(),
+                $data->getArticleSlug(),
+                $data->getArticleText(),
+                $data->getArticleVisibility()
+            ]);
+            return true;
+        }catch (Exception $e){
+            return $e->getMessage();
+        }
+
     }
 
     public function readById(int $id): bool|AbstractMapping
