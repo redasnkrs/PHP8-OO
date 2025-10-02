@@ -8,39 +8,30 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Page d'accueil</title>
+    <title>Nouvel article</title>
 </head>
 <body>
-    <h1>Page d'accueil</h1>
+    <h1>Nouvel article</h1>
     <nav>
         <a href ="./">Accueil</a> | <a href ="./?p=admin">Administration</a>
     </nav>
-    <h2>Articles de notre site</h2>
-    <?php
-    if(empty($nosArticle)):
-    ?>
-    <h3>Pas encore d'articles sur notre site</h3>
-    <?php
-    else:
-        $nbArticle = count($nosArticle);
-        $pluriel = $nbArticle > 1? "s" : "";
-    ?>
-    <h3>Il y a <?=$nbArticle?> article<?=$pluriel?> </h3>
-        <?php
-    // tant qu'on a des articles
-        $i = 1;
-        foreach ($nosArticle as $item):
-        ?>
-        <div id="article<?=$i?>" class="article">
-            <h3><?=html_entity_decode($item->getArticleTitle())?></h3>
-            <h4>Écrit le <?=$item->getArticleDate()?></h4>
-            <p><?=nl2br(html_entity_decode($item->getArticleText()))?></p>
-        </div>
-    <?php
-        $i++;
-        endforeach;
-    endif;
-    ?>
-<?php //var_dump($connectPDO,$ArticleManager,$nosArticle); ?>
+    <h2>Création d'un nouvel article</h2>
+    <form action="" method="post" name="name">
+        <label for="article_title">Titre de l'article</label><br>
+        <input type="text" name="article_title" id="article_title" required><br><br>
+
+        <label for="article_text">Texte de l'article</label><br>
+        <textarea name="article_text" id="article_text" cols="30" rows="10" required></textarea><br><br>
+
+        <label for="article_visibility">Visibilité de l'article</label><br>
+        <select name="article_visibility" id="article_visibility" required>
+            <option value="1">Visible</option>
+            <option value="0">Non visible</option>
+        </select><br><br>
+
+        <input type="submit" value="Créer l'article">
+        
+    </form>
+<?php var_dump($_POST,$newArticle); ?>
 </body>
 </html>

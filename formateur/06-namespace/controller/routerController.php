@@ -1,8 +1,10 @@
 <?php
 // echo __FILE__; // chemin et nom de fichier
 
-// chemin vers la classe
+// chemin vers la classe Manager d'Article
 use model\ArticleManager;
+// chemin vers le mapping d'Article
+use model\ArticleMapping;
 
 # Connexion PDO
 try {
@@ -34,6 +36,17 @@ if(isset($_GET['p'])){
             include RACINE_PATH . "/view/admin.html.php";
             break;
         case 'create':
+            // si le formulaire est envoyé
+            if(isset($_POST['article_title'],$_POST['article_text'],$_POST['article_visibility'])){
+                try {
+                    // utilisation des setters
+                    $newArticle = new ArticleMapping($_POST);
+
+                }catch (Exception $e){
+                    die($e->getMessage());
+                }
+            }
+                include RACINE_PATH . "/view/create.html.php";
 
             break;
         case 'update':

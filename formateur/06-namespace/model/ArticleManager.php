@@ -4,6 +4,7 @@ namespace model;
 
 use PDO;
 
+// implémentation de 2 interfaces
 class ArticleManager implements ManagerInterface, CrudInterface
 {
     private PDO $db;
@@ -57,6 +58,7 @@ class ArticleManager implements ManagerInterface, CrudInterface
      */
 
     // on souhaite ne récupérer que les articles visibles
+    // pour la page d'accueil
     public function readAllVisible(bool $orderDesc = true): array
     {
         $sql = "SELECT * FROM `article` WHERE `article_visibility`=1 ";

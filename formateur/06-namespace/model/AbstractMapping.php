@@ -3,6 +3,7 @@
 // création du namespace
 namespace model;
 
+// Classe abstraite de mapping pour tous les mappings
 abstract class AbstractMapping
 {
     // création d'un constructeur pour tous les enfants
