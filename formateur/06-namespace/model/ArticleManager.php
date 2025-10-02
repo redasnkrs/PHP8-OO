@@ -45,7 +45,7 @@ class ArticleManager implements ManagerInterface, CrudInterface
 
     public function readById(int $id): bool|AbstractMapping
     {
-        // TODO: Implement readById() method.
+        return false;
     }
 
     // récupération de tous nos articles

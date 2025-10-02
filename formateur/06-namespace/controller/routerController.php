@@ -71,6 +71,8 @@ if(isset($_GET['p'])){
             break;
         case 'update':
                 if(!empty($_GET['id'])  && ctype_digit($_GET['id'])):
+                    // récupération de l'article
+                    $article = $ArticleManager->readById((int)$_GET['id']);
                     include RACINE_PATH."/view/update.html.php";
                 else:
                     $message = "Touche pas à mon code !";
