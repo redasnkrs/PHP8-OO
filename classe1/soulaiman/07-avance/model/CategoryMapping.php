@@ -46,7 +46,7 @@ class CategoryMapping extends AbstractMapping{
         $nomClean = trim(htmlspecialchars(strip_tags($nom)));
         if(empty($nomClean))
             throw new Exception("Le nom ne peut être vide !");
-        if(strlen($nomClean)<6)
+        if(strlen($nomClean)<2)
             throw new Exception("Le nom est trop court !");
         if(strlen($nomClean)>80)
             throw new Exception("Le nom est trop long !");

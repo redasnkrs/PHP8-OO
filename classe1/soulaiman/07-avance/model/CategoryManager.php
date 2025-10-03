@@ -6,7 +6,7 @@ use PDO;
 use Exception;
 
 // implémentation de 2 interfaces
-class ArticleManager implements ManagerInterface, CrudInterface
+class CategoryManager  implements ManagerInterface, CrudInterface
 {
     private PDO $db;
 
@@ -25,7 +25,7 @@ class ArticleManager implements ManagerInterface, CrudInterface
      * mapping, c'est-à-dire données où on applique un CRUD
      * dans notre cas une bdd MySQL
      */
-    public function createCateg(AbstractMapping $data): bool|string
+    public function create(AbstractMapping $data): bool|string
     {
         $sql = "INSERT INTO `category` (`category_name`, `category_slug`, `category_desc`) VALUES (?,?,?)";
         $prepare = $this->db->prepare($sql);
@@ -45,7 +45,7 @@ class ArticleManager implements ManagerInterface, CrudInterface
 
     public function readById(int $id): bool|AbstractMapping
     {
-        $sql = "SELECT * FROM `article` WHERE `id` = ?";
+        $sql = "SELECT * FROM `category` WHERE `id` = ?";
         $prepare = $this->db->prepare($sql);
         $prepare->bindValue(1,$id,PDO::PARAM_INT);
         try{
@@ -56,7 +56,7 @@ class ArticleManager implements ManagerInterface, CrudInterface
             // on a un article
             $result = $prepare->fetch(PDO::FETCH_ASSOC);
             // création de l'instance de type ArticleMapping
-            $article = new ArticleMapping($result);
+            $article = new CategoryMapping($result);
             $prepare->closeCursor();
             return $article;
 
@@ -68,17 +68,20 @@ class ArticleManager implements ManagerInterface, CrudInterface
     // récupération de tous nos articles
     public function readAll(bool $orderDesc = true): array
     {
-        $sql = "SELECT * FROM `article` ";
-        if($orderDesc===true)
-            $sql .= "ORDER BY `article_date` DESC";
+        $sql = "SELECT * FROM `category` ";
+        if($orderDesc)
+            $sql .= " ORDER BY `id` DESC";
+        else
+            $sql .= " ORDER BY `id` ASC";
         $query = $this->db->query($sql);
         $stmt = $query->fetchAll(PDO::FETCH_ASSOC);
+        $results = [];
         foreach ($stmt as $item){
             // réutilisation des setters
-            $result[] = new ArticleMapping($item);
+            $results[] = new CategoryMapping($item);
         }
         $query->closeCursor();
-        return $result;
+        return $results ;
     }
 
     public function update(int $id, AbstractMapping $data): bool|string
@@ -87,21 +90,19 @@ class ArticleManager implements ManagerInterface, CrudInterface
         if ($id != $data->getId())
             return "Pas bien de toucher à l'id !";
         // on peut faire l'update
-        $sql = "UPDATE `article` SET 
-                     `article_title`= :title,
-                     `article_slug`= :slug,
-                     `article_text`= :text,
-                     `article_date` = :datea,
-                     `article_visibility` = :visibility
+        $sql = "UPDATE `category` SET 
+                     `category_name`= :nom,
+                     `category_slug`= :slug,
+                     `category_desc`= :desc
+    
                 WHERE `id` = :id;      
                      ";
         $prepare = $this->db->prepare($sql);
         $prepare->bindValue("id", $data->getId(), PDO::PARAM_INT);
-        $prepare->bindValue("title", $data->getArticleTitle());
-        $prepare->bindValue("slug", $data->getArticleSlug());
-        $prepare->bindValue("datea", $data->getArticleDate());
-        $prepare->bindValue("text", $data->getArticleText());
-        $prepare->bindValue("visibility", $data->getArticleVisibility(), PDO::PARAM_INT);
+        $prepare->bindValue("nom", $data->getCategoryName());
+        $prepare->bindValue("slug", $data->getCategorySlug());
+        $prepare->bindValue("desc", $data->getCategoryDesc());
+       
         try{
             $prepare->execute();
             return true;
@@ -114,7 +115,7 @@ class ArticleManager implements ManagerInterface, CrudInterface
 
     public function delete(int $id)
     {
-        $sql = "DELETE FROM `article` WHERE `id`=?";
+        $sql = "DELETE FROM `category` WHERE `id`=?";
         $prepare = $this->db->prepare($sql);
         try{
             $prepare->execute([$id]);
@@ -124,24 +125,5 @@ class ArticleManager implements ManagerInterface, CrudInterface
         }
     }
 
-    /*
-     * Nos méthodes n'existant pas dans l'interface
-     */
-
-    // on souhaite ne récupérer que les articles visibles
-    // pour la page d'accueil
-    public function readAllVisible(bool $orderDesc = true): array
-    {
-        $sql = "SELECT * FROM `article` WHERE `article_visibility`=1 ";
-        if($orderDesc===true)
-            $sql .= "ORDER BY `article_date` DESC";
-        $query = $this->db->query($sql);
-        $stmt = $query->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($stmt as $item){
-            // réutilisation des setters
-            $result[] = new ArticleMapping($item);
-        }
-        $query->closeCursor();
-        return $result;
-    }
+   
 }
