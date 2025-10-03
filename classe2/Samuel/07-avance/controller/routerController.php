@@ -160,15 +160,15 @@ if(isset($_GET['p'])||isset($_GET['c'])){
                         $newCategory = new CategoryMapping($_POST);
                         // pas de faute création du slug
                         // qui est importé par 'use SlugifyTrait'
-                        // dans ArticleManager, on décode l'htmspecialchars
+                        // dans CategoryManager, on décode l'htmspecialchars
                         // pour éviter des caractères parasites dans le nom
                         // du slug
                         $slugCategory = $CategoryManager->slugify(html_entity_decode($newCategory->getCategoryName()));
-                        // on utilise le setter d'Article pour mettre
-                        // à jour article_slug
+                        // on utilise le setter de Category pour mettre
+                        // à jour category_slug
                         $newCategory->setCategorySlug($slugCategory);
 
-                        // on veut insérer l'article
+                        // on veut insérer la catégorie
                         $ok = $CategoryManager->create($newCategory);
                         if ($ok === true) {
                             // redirection vers la page d'admin
@@ -196,10 +196,10 @@ if(isset($_GET['p'])||isset($_GET['c'])){
                         $updateCategory = new CategoryMapping($_POST);
                         // on régénère le slug depuis lui-même
                         $slugCategory = $CategoryManager->slugify(html_entity_decode($updateCategory->getCategoryName()));
-                        // on utilise le setter d'Article pour mettre
+                        // on utilise le setter de Category pour mettre
                         // à jour article_slug
                         $updateCategory->setCategorySlug($slugCategory);
-                        // on va modifier dans la table article
+                        // on va modifier dans la table category
                         try {
                             $ok = $CategoryManager->update($_GET['id'], $updateCategory);
                             // si une erreur comme l'id ou problème d'insertion
@@ -215,9 +215,9 @@ if(isset($_GET['p'])||isset($_GET['c'])){
 
 
                     }
-                    // récupération de l'article
+                    // récupération de la catégorie
                     $category = $CategoryManager->readById((int)$_GET['id']);
-                    // si l'article n'existe pas
+                    // si la catégorie n'existe pas
                     if ($category === false) {
                         $message = "Cet article n'existe plus";
                         include RACINE_PATH . "/view/404.html.php";
