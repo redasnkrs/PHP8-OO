@@ -17,16 +17,14 @@
     </nav>
     <h2>Articles de notre site</h2>
 <form action="" method="post" name="name">
-    <input type="hidden" name="article_id" value="<?= $article->getId() ?>">
+    <input type="hidden" name="id" value="<?= $article->getId() ?>">
         <label for="article_title">Titre de l'article</label><br>
-        <input type="text" name="article_title" id="article_title" value="<?= htmlspecialchars($article->getArticleTitle()) ?>" required><br><br>
-        <label for="article_slug">Slug de l'article</label><br>
-        <input type="text" name="article_slug" id="article_slug" value="<?= htmlspecialchars($article->getArticleSlug()) ?>" required><br><br>
+        <input type="text" name="article_title" id="article_title" value="<?= html_entity_decode($article->getArticleTitle()) ?>" required><br><br>
 
         <label for="article_text">Texte de l'article</label><br>
-        <textarea name="article_text" id="article_text" cols="30" rows="10" required><?= htmlspecialchars($article->getArticleText()) ?></textarea><br><br>
+        <textarea name="article_text" id="article_text" cols="30" rows="10" required><?= html_entity_decode($article->getArticleText()) ?></textarea><br><br>
         <label for="article_date">Date de l'article</label><br>
-        <input type="datetime-local" name="article_date" id="article_date" value="<?= $article->getArticleDate()->format('Y-m-d\TH:i') ?>" required><br><br>
+        <input type="datetime-local" name="article_date" id="article_date" value="<?= $article->getArticleDate() ?>" required><br><br>
 
         <label for="article_visibility">Visibilité de l'article</label><br>
         <select name="article_visibility" id="article_visibility" required>
@@ -40,6 +38,7 @@
 <?php var_dump($_POST);
 // si on a soumis le formulaire
 if(isset($article)) var_dump($article);
+if(isset($updateArticle)) var_dump($updateArticle);
 ?>
 
 </body>

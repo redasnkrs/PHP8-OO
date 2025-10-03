@@ -31,10 +31,12 @@ $ArticleManager = new ArticleManager($connectPDO);
 if(isset($_GET['p'])){
 
     switch($_GET['p']){
+        // page admin
         case 'admin':
             $nosArticle = $ArticleManager->readAll();
             include RACINE_PATH . "/view/admin.html.php";
             break;
+        // create article
         case 'create':
             // si le formulaire est envoyé
             if(isset($_POST['article_title'],$_POST['article_text'],$_POST['article_visibility'])){
@@ -69,16 +71,52 @@ if(isset($_GET['p'])){
                 include RACINE_PATH . "/view/create.html.php";
 
             break;
+        // update article
         case 'update':
                 if(!empty($_GET['id'])  && ctype_digit($_GET['id'])):
+                    // si on a cliqué sur update
+                    if(isset($_POST['article_title'],$_POST['article_text'],$_POST['article_visibility'])){
+
+                        // les setters revérifient les champs
+                        $updateArticle = new ArticleMapping($_POST);
+                        // on régénère le slug depuis lui-même
+                        $slug = $ArticleManager->slugify(html_entity_decode($updateArticle->getArticleTitle()));
+                        // on utilise le setter d'Article pour mettre
+                        // à jour article_slug
+                        $updateArticle->setArticleSlug($slug);
+                        // on va modifier dans la table article
+                        try{
+                            $ok = $ArticleManager->update($_GET['id'],$updateArticle);
+                            // si une erreur comme l'id ou problème d'insertion
+                            if(is_string($ok)){
+                                $message = $ok;
+                                include RACINE_PATH."/view/404.html.php";
+                                die();
+                            }
+                            header("location: ./?p=admin");
+                        }catch (Exception $e){
+                            echo $e->getMessage();
+                        }
+
+
+
+
+                    }
                     // récupération de l'article
                     $article = $ArticleManager->readById((int)$_GET['id']);
-                    include RACINE_PATH."/view/update.html.php";
+                    // si l'article n'existe pas
+                    if($article===false){
+                        $message = "Cet article n'existe plus";
+                        include RACINE_PATH."/view/404.html.php";
+                    }else {
+                        include RACINE_PATH . "/view/update.html.php";
+                    }
                 else:
                     $message = "Touche pas à mon code !";
                     include RACINE_PATH."/view/404.html.php";
                 endif;
             break;
+        // delete article
         case 'delete':
             if(!empty($_GET['id'])  && ctype_digit($_GET['id'])):
 
