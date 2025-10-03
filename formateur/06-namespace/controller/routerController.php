@@ -119,7 +119,13 @@ if(isset($_GET['p'])){
         // delete article
         case 'delete':
             if(!empty($_GET['id'])  && ctype_digit($_GET['id'])):
-
+                $ok = $ArticleManager->delete($_GET['id']);
+                if($ok){
+                    header("Location: ./?p=admin");
+                }else{
+                    $message = "Erreur lors de la suppression !";
+                    include RACINE_PATH."/view/404.html.php";
+                }
             else:
                 $message = "Touche pas à mon code !";
                 include RACINE_PATH."/view/404.html.php";
