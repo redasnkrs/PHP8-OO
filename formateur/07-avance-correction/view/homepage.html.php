@@ -12,9 +12,7 @@
 </head>
 <body>
     <h1>Page d'accueil</h1>
-    <nav>
-        <a href ="./">Accueil</a> | <a href ="./?p=admin">Administration Article</a> | <a href ="./?c=admin">Administration Category</a>
-    </nav>
+    <?php include 'inc/public.menu.html.php'; ?>
     <h2>Articles de notre site</h2>
     <?php
     if(empty($nosArticle)):

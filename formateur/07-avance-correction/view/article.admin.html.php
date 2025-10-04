@@ -1,5 +1,5 @@
 <?php
-// view/homepage.html.php
+// path: formateur/07-avance-correction/view/article.admin.html.php
 ?>
 <!doctype html>
 <html lang="fr">
@@ -13,7 +13,7 @@
 <body>
     <h1>Administration</h1>
     <nav>
-        <a href ="./">Accueil</a> | <a href ="./?p=admin">Administration</a> | <a href="?p=create">Création d'un nouvel article</a>
+        <a href ="./">Accueil</a> | <a href ="./?articleAdmin">Administration</a> | <a href="./?articleAdmin&p=create">Création d'un nouvel article</a>
     </nav>
     <h2>Articles de notre site</h2>
     <?php
@@ -48,8 +48,8 @@
                 <td><?=html_entity_decode(substr($item->getArticleText(),0,150))?></td>
                 <td><?=$item->getArticleDate()?></td>
                 <td><?=$item->getArticleVisibility()?></td>
-                <td><a href="?p=update&id=<?=$item->getId()?>">update</a></td>
-                <td><a href="#" onclick="let a=confirm('Voulez-vous vraiment supprimer l\'article <?=$item->getArticleSlug()?>'); if(a){ document.location ='?p=delete&id=<?=$item->getId()?>';}">delete</a></td>
+                <td><a href="?articleAdmin&p=update&id=<?=$item->getId()?>">update</a></td>
+                <td><a href="#" onclick="let a=confirm('Voulez-vous vraiment supprimer l\'article <?=$item->getArticleSlug()?>'); if(a){ document.location ='?articleAdmin&p=delete&id=<?=$item->getId()?>';}">delete</a></td>
             </tr>
             <?php
                 endforeach;

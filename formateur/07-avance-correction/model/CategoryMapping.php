@@ -67,8 +67,6 @@ class CategoryMapping extends AbstractMapping
         $category_slug = trim(htmlspecialchars(strip_tags($category_slug)));
         if(empty($category_slug))
             throw new Exception("Le slug ne peut être vide !");
-        if(strlen($category_slug)<6)
-            throw new Exception("Le slug est trop court !");
         if(strlen($category_slug)>84)
             throw new Exception("Le slug est trop long !");
 

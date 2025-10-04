@@ -16,9 +16,25 @@ class CategoryManager implements CrudInterface, ManagerInterface
 
     // Appel du Trait pour slugifier le titre
     use SlugifyTrait;
-    public function read()
+    public function readAll(bool $orderDesc = true): array
     {
-        // TODO: Implement read() method.
+        $sql = "SELECT * FROM category ";
+        if($orderDesc) {
+            $sql .= "ORDER BY category_name DESC";
+        }
+        try {
+            $query = $this->db->query($sql);
+            $result = [];
+            while ($data = $query->fetch(PDO::FETCH_ASSOC)) {
+                $result[] = new CategoryMapping($data);
+            }
+            return $result;
+        }catch (Exception $e){
+            die($e->getMessage());
+        }
+
+
+
     }
 
     public function readById(int $id): bool|AbstractMapping
@@ -41,10 +57,7 @@ class CategoryManager implements CrudInterface, ManagerInterface
         // TODO: Implement delete() method.
     }
 
-    public function readAll(bool $orderDesc = true): array
-    {
-        return [];
-    }
+
 
 
 }

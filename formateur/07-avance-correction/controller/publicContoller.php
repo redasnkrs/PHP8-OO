@@ -5,18 +5,14 @@
  * Contrôleur public
  *
  */
-/*
-    *
-    * Partie publique du site
-    *
-    */
+
 // page d'accueil
 if (!isset($_GET['p'])) {
 
     // récupération des articles visibles
     $nosArticle = $ArticleManager->readAllVisible();
     // récupération des catégories
-    $nosCategory = [];
+    $nosCategory = $CategoryManager->readAll();
     // appel de la vue
     include RACINE_PATH . "/view/homepage.html.php";
 
@@ -26,13 +22,11 @@ if (!isset($_GET['p'])) {
     switch ($_GET['p']) {
         // pour les articles
         case 'article':
-            // appel du controller des articles
-            require_once RACINE_PATH . "/controller/articleController.php";
+
             break;
         // pour les catégories
         case 'category':
-            // appel du controller des catégories
-            require_once RACINE_PATH . "/controller/categoryController.php";
+
             break;
         // page non trouvée
         default:

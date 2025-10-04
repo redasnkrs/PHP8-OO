@@ -11,7 +11,6 @@
  * Lien vers les dépendances nécessaires
  * à l'entièreté du site
  */
-
 // ici pour les articles
 use model\ArticleMapping;
 use model\ArticleManager;
@@ -41,17 +40,21 @@ $ArticleManager = new ArticleManager($connectPDO);
 $CategoryManager = new CategoryManager($connectPDO);
 
 
-// si il n'existe pas les paramètres category ou article
-if (!isset($_GET['category'], $_GET['article'])) {
+// si il n'existe pas les paramètres categoryAdmin ni articleAdmin
+if (!isset($_GET['categoryAdmin']) && !isset($_GET['articleAdmin'])) {
     // appel du controller public
     require_once "publicContoller.php";
 
-}elseif (isset($_GET['category'])){
+// si il existe  categoryAdmin
+}elseif (isset($_GET['categoryAdmin'])){
     // appel du controller des catégories
     require_once "categoryController.php";
-}elseif (isset($_GET['article'])){
+
+// si il existe articleAdmin
+}elseif (isset($_GET['articleAdmin'])){
     // appel du controller des articles
     require_once "articleController.php";
+
 }else{
     // page non trouvée
     $message = "Page non trouvée";

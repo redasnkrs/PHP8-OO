@@ -5,13 +5,17 @@
  * Contrôleur des articles
  *
  */
+use model\ArticleMapping;
+
+// Accueil de l'admin des articles
+if(!isset($_GET['p'])){
+    $nosArticle = $ArticleManager->readAll();
+    include RACINE_PATH . "/view/article.admin.html.php";
+    die();
+}
 // page admin
 switch ($_GET['p']) {
-    // page admin
-    case 'admin':
-        $nosArticle = $ArticleManager->readAll();
-        include RACINE_PATH . "/view/admin.html.php";
-        break;
+
     // create article
     case 'create':
         // si le formulaire est envoyé

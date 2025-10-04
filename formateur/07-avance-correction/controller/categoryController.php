@@ -20,3 +20,4 @@ switch ($_GET['c']) {
 
         break;
 }
+echo "Category";
