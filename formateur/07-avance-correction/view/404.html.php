@@ -12,9 +12,7 @@
 </head>
 <body>
     <h1>Erreur 404</h1>
-    <nav>
-        <a href ="./">Accueil</a> | <a href ="./?p=admin">Administration</a> | <a href="?p=create">Création d'un nouvel article</a>
-    </nav>
+    <?php include 'inc/public.menu.html.php'; ?>
     <?php
     if(isset($message)):
     ?>

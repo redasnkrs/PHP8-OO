@@ -6,13 +6,15 @@
  *
  */
 
+// récupération des catégories pour toutes les pages
+$nosCategory = $CategoryManager->readAll();
+
 // page d'accueil
 if (!isset($_GET['p'])) {
 
     // récupération des articles visibles
     $nosArticle = $ArticleManager->readAllVisible();
-    // récupération des catégories
-    $nosCategory = $CategoryManager->readAll();
+
     // appel de la vue
     include RACINE_PATH . "/view/homepage.html.php";
 
