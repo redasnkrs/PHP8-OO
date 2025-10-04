@@ -37,7 +37,7 @@ switch ($_GET['p']) {
                 $ok = $ArticleManager->create($newArticle);
                 if ($ok === true) {
                     // redirection vers la page d'admin
-                    header("Location: ./?p=admin");
+                    header("Location: ./?articleAdmin");
                     exit;
                 } else {
                     // erreur lors de l'insertion
@@ -73,7 +73,7 @@ switch ($_GET['p']) {
                         include RACINE_PATH . "/view/404.html.php";
                         die();
                     }
-                    header("location: ./?p=admin");
+                    header("location: ./?articleAdmin");
                 } catch (Exception $e) {
                     echo $e->getMessage();
                 }
@@ -99,7 +99,7 @@ switch ($_GET['p']) {
         if (!empty($_GET['id']) && ctype_digit($_GET['id'])):
             $ok = $ArticleManager->delete($_GET['id']);
             if ($ok) {
-                header("Location: ./?p=admin");
+                header("Location: ./?articleAdmin");
             } else {
                 $message = "Erreur lors de la suppression !";
                 include RACINE_PATH . "/view/404.html.php";
