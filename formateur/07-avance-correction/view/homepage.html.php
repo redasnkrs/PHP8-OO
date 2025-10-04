@@ -30,9 +30,11 @@
         foreach ($nosArticle as $item):
         ?>
         <div id="article<?=$i?>" class="article">
-            <h3><?=html_entity_decode($item->getArticleTitle())?></h3>
+            <h3><a href="?p=article&slug=<?=$item->getArticleSlug()?>"><?=html_entity_decode($item->getArticleTitle())?></a></h3>
             <h4>Écrit le <?=$item->getArticleDate()?></h4>
-            <p><?=nl2br(html_entity_decode($item->getArticleText()))?></p>
+            <p><?=$ArticleManager::cutTheText(html_entity_decode($item->getArticleText()),150);
+            // Méthode statique pour couper le texte à 150 caractères maximum
+                ?></p>
         </div>
     <?php
         $i++;

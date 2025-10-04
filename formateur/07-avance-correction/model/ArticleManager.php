@@ -65,6 +65,29 @@ class ArticleManager implements ManagerInterface, CrudInterface
         }
     }
 
+    public function readBySlug(string $slug): bool|AbstractMapping
+    {
+        $sql = "SELECT * FROM `article` WHERE `article_slug` = ? AND `article_visibility`=1";
+        $prepare = $this->db->prepare($sql);
+        $prepare->bindValue(1,$slug);
+        try{
+            $prepare->execute();
+            // si pas d'article récupéré
+            if($prepare->rowCount()!==1)
+                return false;
+            // on a un article
+            $result = $prepare->fetch(PDO::FETCH_ASSOC);
+            // création de l'instance de type ArticleMapping
+            $article = new ArticleMapping($result);
+            $prepare->closeCursor();
+            return $article;
+
+        }catch(Exception $e){
+            die($e->getMessage());
+        }
+
+    }
+
     // récupération de tous nos articles
     public function readAll(bool $orderDesc = true): array
     {
@@ -132,7 +155,7 @@ class ArticleManager implements ManagerInterface, CrudInterface
     // pour la page d'accueil
     public function readAllVisible(bool $orderDesc = true): array
     {
-        $sql = "SELECT * FROM `article` WHERE `article_visibility`=1 ";
+        $sql = "SELECT `id`, `article_title`, `article_slug`, LEFT(`article_text`,250) AS `article_text`, `article_date`  FROM `article` WHERE `article_visibility`=1 ";
         if($orderDesc===true)
             $sql .= "ORDER BY `article_date` DESC";
         $query = $this->db->query($sql);

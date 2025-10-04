@@ -45,4 +45,31 @@ trait SlugifyTrait{
         // 8. On retourne la chaîne
         return $text;
     }
+    /**
+     * Coupe un texte à une longueur maximale sans couper les mots
+     * et ajoute des points de suspension si le texte est coupé.
+     *
+     * @param string $text Le texte à couper.
+     * @param int $maxLength La longueur maximale du texte (par défaut 200).
+     * @return string Le texte coupé avec des points de suspension si nécessaire.
+     */
+    public static function cutTheText(string $text, int $maxLength=200): string
+    {
+        // si le texte est plus court que la longueur max
+        if(strlen($text)<=$maxLength){
+            return $text;
+        }
+        // on coupe au max
+        $cutText = substr($text,0,$maxLength);
+        // on cherche le dernier espace pour ne pas couper un mot
+        $lastSpace = strrpos($cutText,' ');
+        // s'il y a un espace
+        if($lastSpace!==false){
+            // on coupe au dernier espace
+            $cutText = substr($cutText,0,$lastSpace);
+        }
+        // on ajoute des points de suspension
+        $cutText .= '...';
+        return $cutText;
+    }
 }

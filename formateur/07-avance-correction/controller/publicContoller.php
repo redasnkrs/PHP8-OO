@@ -22,7 +22,22 @@ if (!isset($_GET['p'])) {
     switch ($_GET['p']) {
         // pour les articles
         case 'article':
-
+            if(isset($_GET['slug']) && !empty($_GET['slug'])){
+                // on récupère l'article par son slug
+                $article = $ArticleManager->readBySlug($_GET['slug']);
+                if($article !== false){
+                    // on affiche l'article
+                    include RACINE_PATH . "/view/article.html.php";
+                }else{
+                    // article non trouvé
+                    $message = "Article non trouvé";
+                    include RACINE_PATH . "/view/404.html.php";
+                }
+            }else{
+                // article non trouvé
+                $message = "Article non trouvé";
+                include RACINE_PATH . "/view/404.html.php";
+            }
             break;
         // pour les catégories
         case 'category':
