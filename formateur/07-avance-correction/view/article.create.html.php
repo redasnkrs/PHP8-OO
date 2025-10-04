@@ -12,9 +12,7 @@
 </head>
 <body>
     <h1>Nouvel article</h1>
-    <nav>
-        <a href ="./">Accueil</a> | <a href ="./?p=admin">Administration</a>
-    </nav>
+    <?php include 'inc/admin.article.menu.html.php'; ?>
     <h2>Création d'un nouvel article</h2>
     <?php
     if(isset($message)):

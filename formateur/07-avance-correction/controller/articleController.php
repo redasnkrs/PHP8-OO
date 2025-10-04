@@ -48,7 +48,7 @@ switch ($_GET['p']) {
                 die($e->getMessage());
             }
         }
-        include RACINE_PATH . "/view/create.html.php";
+        include RACINE_PATH . "/view/article.create.html.php";
 
         break;
     // update article
@@ -87,7 +87,7 @@ switch ($_GET['p']) {
                 $message = "Cet article n'existe plus";
                 include RACINE_PATH . "/view/404.html.php";
             } else {
-                include RACINE_PATH . "/view/update.html.php";
+                include RACINE_PATH . "/view/article.update.html.php";
             }
         else:
             $message = "Touche pas à mon code !";

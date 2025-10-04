@@ -12,9 +12,7 @@
 </head>
 <body>
     <h1>Mise à jour de l'article </h1>
-    <nav>
-        <a href ="./">Accueil</a> | <a href ="./?p=admin">Administration</a> | <a href="?p=create">Création d'un nouvel article</a>
-    </nav>
+    <?php include 'inc/admin.article.menu.html.php'; ?>
     <h2>Articles de notre site</h2>
 <form action="" method="post" name="name">
     <input type="hidden" name="id" value="<?= $article->getId() ?>">

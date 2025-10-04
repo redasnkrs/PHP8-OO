@@ -11,9 +11,9 @@
     <title>Article : <?=html_entity_decode($article->getArticleTitle())?></title>
 </head>
 <body>
-    <h1>Article : </h1>
+    <h1>Article : <?=html_entity_decode($article->getArticleTitle())?></h1>
     <?php include 'inc/public.menu.html.php'; ?>
-    <h2><?=html_entity_decode($article->getArticleTitle())?></h2>
+
 
         <div  class="article">
             <h3><?=html_entity_decode($article->getArticleTitle())?></h3>

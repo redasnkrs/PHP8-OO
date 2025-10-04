@@ -12,9 +12,7 @@
 </head>
 <body>
     <h1>Administration</h1>
-    <nav>
-        <a href ="./">Accueil</a> | <a href ="./?articleAdmin">Administration</a> | <a href="./?articleAdmin&p=create">Création d'un nouvel article</a>
-    </nav>
+    <?php include 'inc/admin.article.menu.html.php'; ?>
     <h2>Articles de notre site</h2>
     <?php
     if(empty($nosArticle)):
