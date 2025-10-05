@@ -39,9 +39,7 @@
         <input type="submit" value="Créer l'article">
         
     </form>
-<?php var_dump($_POST);
-// si on a soumis le formulaire
-if(isset($newArticle)) var_dump($newArticle);
-?>
+
+
 </body>
 </html>

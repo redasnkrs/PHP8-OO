@@ -66,13 +66,14 @@ class ArticleManager implements ManagerInterface, CrudInterface
     }
 
     // récupération de tous nos articles
-    public function readAll(bool $orderDesc = true): array
+    public function readAll(bool $orderDesc = true): array 
     {
         $sql = "SELECT * FROM `article` ";
         if($orderDesc===true)
             $sql .= "ORDER BY `article_date` DESC";
         $query = $this->db->query($sql);
         $stmt = $query->fetchAll(PDO::FETCH_ASSOC);
+       $result = [];
         foreach ($stmt as $item){
             // réutilisation des setters
             $result[] = new ArticleMapping($item);
@@ -130,13 +131,14 @@ class ArticleManager implements ManagerInterface, CrudInterface
 
     // on souhaite ne récupérer que les articles visibles
     // pour la page d'accueil
-    public function readAllVisible(bool $orderDesc = true): array
+    public function readAllVisible(bool $orderDesc = true): array 
     {
         $sql = "SELECT * FROM `article` WHERE `article_visibility`=1 ";
         if($orderDesc===true)
             $sql .= "ORDER BY `article_date` DESC";
         $query = $this->db->query($sql);
         $stmt = $query->fetchAll(PDO::FETCH_ASSOC);
+       $result = [];
         foreach ($stmt as $item){
             // réutilisation des setters
             $result[] = new ArticleMapping($item);

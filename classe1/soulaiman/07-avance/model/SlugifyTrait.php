@@ -39,7 +39,7 @@ trait SlugifyTrait{
         // caractères hexadécimaux pour éviter
         // les doublons
         if($prefix===true) {
-            $text = bin2hex(random_bytes(2)) . "-" . $text;
+            $text = $text . "-" . bin2hex(random_bytes(2));
         }
 
         // 8. On retourne la chaîne

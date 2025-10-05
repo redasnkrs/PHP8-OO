@@ -41,6 +41,32 @@
         endforeach;
     endif;
     ?>
-<?php //var_dump($connectPDO,$ArticleManager,$nosArticle); ?>
+    <hr>
+    <h2>Catégories de notre site</h2>
+    <?php
+    if(empty($nosCategory)):
+    ?>
+    <h3>Pas encore de catégories sur notre site</h3>
+    <?php
+    else:
+        $nbCategory = count($nosCategory);
+        $pluriel = $nbCategory > 1? "s" : "";
+    ?>
+    <h3>Il y a <?=$nbCategory?> catégorie<?=$pluriel?> </h3>
+        <?php
+    // tant qu'on a des catégories
+        $j = 1;
+        foreach ($nosCategory as $item):
+        ?>
+        <div id="category<?=$j?>" class="category">
+            <h3><?=html_entity_decode($item->getCategoryName())?></h3>
+            <p><?=nl2br(html_entity_decode($item->getCategoryDesc()))?></p>
+        </div>
+    <?php
+        $j++;
+        endforeach;
+    endif;
+    ?>
+
 </body>
 </html>

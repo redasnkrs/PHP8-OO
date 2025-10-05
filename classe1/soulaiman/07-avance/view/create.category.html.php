@@ -34,9 +34,6 @@
         <input type="submit" value="Créer le category">
         
     </form>
-<?php var_dump($_POST);
-// si on a soumis le formulaire
-if(isset($newCategory)) var_dump($newCategory);
-?>
+
 </body>
 </html>

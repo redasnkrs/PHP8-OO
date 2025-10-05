@@ -13,5 +13,7 @@ spl_autoload_register(function ($class) {
 
 
 // chargement du router
-require_once RACINE_PATH."/controller/routerController.php";
+require_once RACINE_PATH."/controller/routerController.category.php";
+require_once RACINE_PATH."/controller/routerController.Article.php";
+
 

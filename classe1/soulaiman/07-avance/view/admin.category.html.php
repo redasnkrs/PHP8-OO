@@ -30,7 +30,7 @@
         <table>
             <thead>
                 <th>id</th>
-                <th>category_slug</th>
+                <th>category_nom</th>
                 <th>category_slug</th>
                 <th>category_desc</th>
                 <th>update</th>

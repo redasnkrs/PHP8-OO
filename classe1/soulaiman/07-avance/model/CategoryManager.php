@@ -56,9 +56,9 @@ class CategoryManager  implements ManagerInterface, CrudInterface
             // on a un article
             $result = $prepare->fetch(PDO::FETCH_ASSOC);
             // création de l'instance de type ArticleMapping
-            $article = new CategoryMapping($result);
+            $category = new CategoryMapping($result);
             $prepare->closeCursor();
-            return $article;
+            return $category;
 
         }catch(Exception $e){
             die($e->getMessage());

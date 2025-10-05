@@ -43,15 +43,15 @@ class CategoryMapping extends AbstractMapping{
     public function setCategoryName(?string $nom): void
     {
         if(is_null($nom)) return;
-        $nomClean = trim(htmlspecialchars(strip_tags($nom)));
-        if(empty($nomClean))
+        $nom = trim(htmlspecialchars(strip_tags($nom)));
+        if(empty($nom))
             throw new Exception("Le nom ne peut être vide !");
-        if(strlen($nomClean)<2)
+        if(strlen($nom)<6)
             throw new Exception("Le nom est trop court !");
-        if(strlen($nomClean)>80)
+        if(strlen($nom)>80)
             throw new Exception("Le nom est trop long !");
 
-        $this->category_name = $nomClean;
+        $this->category_name = $nom;
     }
 
     public function getCategorySlug(): ?string
@@ -61,7 +61,7 @@ class CategoryMapping extends AbstractMapping{
 
 
     // string de 125 max et 6 minimum sans tags, sans espace devant et derrière, caractères spéciaux encodés
-    public function CategorySlug(?string $category_slug): void
+    public function setCategorySlug(?string $category_slug): void
     {
         if(is_null($category_slug)) return;
         $category_slug = trim(htmlspecialchars(strip_tags($category_slug)));
