@@ -52,6 +52,7 @@ class CategoryMapping extends AbstractMapping
         if(empty($category_desc))
             $category_desc = null; // on accepte une description vide
         if(is_null($category_desc)) return;
+        // nettoyage
         $category_desc = trim(htmlspecialchars(strip_tags($category_desc)));
         // si vide après nettoyage
         if(empty($category_desc))
