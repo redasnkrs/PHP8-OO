@@ -8,12 +8,12 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Mise à jour de l'article </title>
+    <title>Mise à jour de l'article : <?= html_entity_decode($article->getArticleTitle()) ?> </title>
 </head>
 <body>
     <h1>Mise à jour de l'article </h1>
     <?php include 'inc/admin.article.menu.html.php'; ?>
-    <h2>Articles de notre site</h2>
+    <h2><?= html_entity_decode($article->getArticleTitle()) ?></h2>
 <form action="" method="post" name="name">
     <input type="hidden" name="id" value="<?= $article->getId() ?>">
         <label for="article_title">Titre de l'article</label><br>

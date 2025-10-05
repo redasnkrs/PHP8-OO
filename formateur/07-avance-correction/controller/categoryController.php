@@ -59,7 +59,7 @@ switch ($_GET['p']) {
                     $updateCateg = new CategoryMapping($_POST);
                     // on vérifie que l'id n'a pas été modifié par l'utilisateur
                     if ($updateCateg->getId() != $_GET['id']) {
-                        die("Hacking attempt");
+                        die("tentative de hack !!!");
                     }
                     // pas de faute création du slug
                     // qui est importé par 'use SlugifyTrait'

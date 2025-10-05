@@ -39,7 +39,24 @@ class CategoryManager implements CrudInterface, ManagerInterface
 
     public function readById(int $id): bool|AbstractMapping
     {
-        // TODO: Implement readById() method.
+        $sql = "SELECT * FROM category WHERE id = :id";
+        try {
+            $query = $this->db->prepare($sql);
+            $query->bindValue(":id", $id, PDO::PARAM_INT);
+            $query->execute();
+            // si pas de catégorie récupérée
+            if ($query->rowCount() !== 1) {
+                return false;
+            }
+            // on a une catégorie
+            $result = $query->fetch(PDO::FETCH_ASSOC);
+            // création de l'instance de type CategoryMapping
+            $category = new CategoryMapping($result);
+            $query->closeCursor();
+            return $category;
+        }catch (Exception $e) {
+            die($e->getMessage());
+        }
     }
 
     public function create(AbstractMapping $data)
@@ -49,6 +66,7 @@ class CategoryManager implements CrudInterface, ManagerInterface
         try {
             $query = $this->db->prepare($sql);
             $query->bindValue(":category_name", $data->getCategoryName());
+            // on accepte une description nulle ou de type string
             $query->bindValue(":category_desc", $data->getCategoryDesc(), PDO::PARAM_STR|PDO::PARAM_NULL);
             $query->bindValue(":category_slug", $data->getCategorySlug());
             $query->execute();
@@ -60,12 +78,36 @@ class CategoryManager implements CrudInterface, ManagerInterface
 
     public function update(int $id, AbstractMapping $data)
     {
-        // TODO: Implement update() method.
+        $sql = "UPDATE category 
+                SET category_name = :category_name, 
+                    category_desc = :category_desc, 
+                    category_slug = :category_slug
+                WHERE id = :id";
+        try {
+            $query = $this->db->prepare($sql);
+            $query->bindValue(":category_name", $data->getCategoryName());
+            // on accepte une description nulle ou de type string
+            $query->bindValue(":category_desc", $data->getCategoryDesc(), PDO::PARAM_STR|PDO::PARAM_NULL);
+            $query->bindValue(":category_slug", $data->getCategorySlug());
+            $query->bindValue(":id", $id, PDO::PARAM_INT);
+            $query->execute();
+        }catch (Exception $e){
+            return $e->getMessage();
+        }
+        return true;
     }
 
     public function delete(int $id)
     {
-        // TODO: Implement delete() method.
+        $sql = "DELETE FROM category WHERE id = :id";
+        try {
+            $query = $this->db->prepare($sql);
+            $query->bindValue(":id", $id, PDO::PARAM_INT);
+            $query->execute();
+        }catch (Exception $e){
+            return $e->getMessage();
+        }
+        return true;
     }
 
 
