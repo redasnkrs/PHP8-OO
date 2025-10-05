@@ -43,7 +43,10 @@
                 <td><?=$item->getId()?></td>
                 <td><?=html_entity_decode($item->getArticleTitle())?></td>
                 <td><?=$item->getArticleSlug()?></td>
-                <td><?=html_entity_decode(substr($item->getArticleText(),0,150))?></td>
+                <td><?=
+                    // on coupe le texte à 200 caractères pour l'affichage puis on le recoupe à 150 pour éviter de couper un mot en plein milieu
+                    $ArticleManager::cutTheText(html_entity_decode(substr($item->getArticleText(),0,200)),150)
+                    ?></td>
                 <td><?=$item->getArticleDate()?></td>
                 <td><?=$item->getArticleVisibility()?></td>
                 <td><a href="?articleAdmin&p=update&id=<?=$item->getId()?>">update</a></td>
