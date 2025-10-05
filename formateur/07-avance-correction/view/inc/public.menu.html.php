@@ -7,5 +7,5 @@
     <?php
     endforeach;
     ?>
-    | Administrations : | <a href ="./?articleAdmin">Administration Article</a> | <a href ="./?categoryAdmin">Administration Category</a>
+   <div style="float: right;">| <a href ="./?articleAdmin">Administration Article</a> | <a href ="./?categoryAdmin">Administration Category</a> |</div>
 </nav>

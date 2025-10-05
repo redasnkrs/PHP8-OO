@@ -43,6 +43,23 @@ if (!isset($_GET['p'])) {
             break;
         // pour les catégories
         case 'category':
+            if(!empty($_GET['slug'])){
+                // on récupère la catégorie par son slug
+                $category = $CategoryManager->readBySlug($_GET['slug']);
+                if($category !== false){
+                    // on affiche la catégorie
+                    include RACINE_PATH . "/view/category.html.php";
+                }else{
+                    // catégorie non trouvée
+                    $message = "Catégorie non trouvée";
+                    include RACINE_PATH . "/view/404.html.php";
+                }
+            }else{
+                // catégorie non trouvée
+                $message = "Catégorie non trouvée";
+                include RACINE_PATH . "/view/404.html.php";
+            }
+
 
             break;
         // page non trouvée

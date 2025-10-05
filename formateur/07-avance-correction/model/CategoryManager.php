@@ -24,6 +24,7 @@ class CategoryManager implements CrudInterface, ManagerInterface
         }
         try {
             $query = $this->db->query($sql);
+            // pour Agim ;-)
             $result = [];
             while ($data = $query->fetch(PDO::FETCH_ASSOC)) {
                 $result[] = new CategoryMapping($data);
@@ -44,6 +45,27 @@ class CategoryManager implements CrudInterface, ManagerInterface
             $query = $this->db->prepare($sql);
             $query->bindValue(":id", $id, PDO::PARAM_INT);
             $query->execute();
+            // si pas de catégorie récupérée
+            if ($query->rowCount() !== 1) {
+                return false;
+            }
+            // on a une catégorie
+            $result = $query->fetch(PDO::FETCH_ASSOC);
+            // création de l'instance de type CategoryMapping
+            $category = new CategoryMapping($result);
+            $query->closeCursor();
+            return $category;
+        }catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function readBySlug(string $slug): bool|AbstractMapping
+    {
+        $sql = "SELECT * FROM category WHERE category_slug = ?";
+        try {
+            $query = $this->db->prepare($sql);
+            $query->execute([$slug]);
             // si pas de catégorie récupérée
             if ($query->rowCount() !== 1) {
                 return false;
@@ -97,7 +119,7 @@ class CategoryManager implements CrudInterface, ManagerInterface
         return true;
     }
 
-    public function delete(int $id)
+    public function delete(int $id): true|string
     {
         $sql = "DELETE FROM category WHERE id = :id";
         try {
