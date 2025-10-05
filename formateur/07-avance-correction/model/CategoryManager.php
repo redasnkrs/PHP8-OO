@@ -49,7 +49,7 @@ class CategoryManager implements CrudInterface, ManagerInterface
         try {
             $query = $this->db->prepare($sql);
             $query->bindValue(":category_name", $data->getCategoryName());
-            $query->bindValue(":category_desc", $data->getCategoryDesc());
+            $query->bindValue(":category_desc", $data->getCategoryDesc(), PDO::PARAM_STR||PDO::PARAM_NULL);
             $query->bindValue(":category_slug", $data->getCategorySlug());
             $query->execute();
     }catch (Exception $e){

@@ -48,10 +48,17 @@ class CategoryMapping extends AbstractMapping
 
     public function setCategoryDesc(?string $category_desc): void
     {
+        // si vide lors d'un envoi de formulaire (vide)
+        if(empty($category_desc))
+            $category_desc = null; // on accepte une description vide
         if(is_null($category_desc)) return;
         $category_desc = trim(htmlspecialchars(strip_tags($category_desc)));
-        if(strlen($category_desc)<10)
-            throw new Exception("Le texte est trop court !");
+        // si vide après nettoyage
+        if(empty($category_desc))
+            $category_desc = null; // on accepte une description vide
+
+        if(strlen($category_desc)>300)
+            throw new Exception("Le texte est trop long !");
 
         $this->category_desc = $category_desc;
     }
