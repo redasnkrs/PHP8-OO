@@ -44,7 +44,18 @@ class CategoryManager implements CrudInterface, ManagerInterface
 
     public function create(AbstractMapping $data)
     {
-        // TODO: Implement create() method.
+        $sql = "INSERT INTO category (category_name, category_desc, category_slug) 
+                VALUES (:category_name, :category_desc, :category_slug)";
+        try {
+            $query = $this->db->prepare($sql);
+            $query->bindValue(":category_name", $data->getCategoryName());
+            $query->bindValue(":category_desc", $data->getCategoryDesc());
+            $query->bindValue(":category_slug", $data->getCategorySlug());
+            $query->execute();
+    }catch (Exception $e){
+            return $e->getMessage();
+        }
+        return true;
     }
 
     public function update(int $id, AbstractMapping $data)

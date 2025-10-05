@@ -1,5 +1,6 @@
 <?php
 // path: formateur/07-avance-correction/controller/categoryController.php
+use model\CategoryMapping;
 
 if(!isset($_GET['p'])){
     // on affiche la liste des catégories
