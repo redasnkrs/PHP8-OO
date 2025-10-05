@@ -33,11 +33,10 @@
         <input type="submit" value="Mettre à jour l'article">
 
     </form>
-<?php var_dump($_POST);
+<?php /* var_dump($_POST);
 // si on a soumis le formulaire
 if(isset($article)) var_dump($article);
-if(isset($updateArticle)) var_dump($updateArticle);
+if(isset($updateArticle)) var_dump($updateArticle); */
 ?>
-
 </body>
 </html>

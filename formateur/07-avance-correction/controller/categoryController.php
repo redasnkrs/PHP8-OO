@@ -2,8 +2,10 @@
 // path: formateur/07-avance-correction/controller/categoryController.php
 
 if(!isset($_GET['p'])){
+    // on affiche la liste des catégories
     $nosCategories = $CategoryManager->readAll();
-    var_dump($nosCategories);
+    // appel de la vue
+    include RACINE_PATH . "/view/category.admin.html.php";
     die();
 }
 // page admin

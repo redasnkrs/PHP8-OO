@@ -1,5 +1,5 @@
 <nav>
-    <a href ="./">Accueil</a>
+    <a href ="./">Accueil</a> | Nos catégories :
     <?php
     foreach ($nosCategory as $item):
     ?>
@@ -7,5 +7,5 @@
     <?php
     endforeach;
     ?>
-    | <a href ="./?articleAdmin">Administration Article</a> | <a href ="./?categoryAdmin">Administration Category</a>
+    | Administrations : | <a href ="./?articleAdmin">Administration Article</a> | <a href ="./?categoryAdmin">Administration Category</a>
 </nav>

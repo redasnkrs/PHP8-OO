@@ -8,10 +8,10 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Administration</title>
+    <title>Administration d'articles</title>
 </head>
 <body>
-    <h1>Administration</h1>
+    <h1>Administration d'articles</h1>
     <?php include 'inc/admin.article.menu.html.php'; ?>
     <h2>Articles de notre site</h2>
     <?php
@@ -44,8 +44,9 @@
                 <td><?=html_entity_decode($item->getArticleTitle())?></td>
                 <td><?=$item->getArticleSlug()?></td>
                 <td><?=
-                    // on coupe le texte à 200 caractères pour l'affichage puis on le recoupe à 150 pour éviter de couper un mot en plein milieu
-                    $ArticleManager::cutTheText(html_entity_decode(substr($item->getArticleText(),0,200)),150)
+                    // on coupe le texte à 150 caractères pour l'affichage puis on le recoupe à 120
+                    // avec la méthode statique pour éviter de couper un mot en plein milieu
+                    $ArticleManager::cutTheText(html_entity_decode(substr($item->getArticleText(),0,150)),120)
                     ?></td>
                 <td><?=$item->getArticleDate()?></td>
                 <td><?=$item->getArticleVisibility()?></td>
