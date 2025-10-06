@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3307
--- Généré le : dim. 28 sep. 2025 à 17:41
+-- Généré le : lun. 06 oct. 2025 à 08:45
 -- Version du serveur : 11.5.2-MariaDB
 -- Version de PHP : 8.3.14
 
@@ -28,16 +28,16 @@ USE `testoo_3`;
 DROP TABLE IF EXISTS `article`;
 CREATE TABLE IF NOT EXISTS `article` (
                                          `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-                                         `article_title` varchar(120) NOT NULL,
-                                         `article_slug` varchar(125) NOT NULL,
-                                         `article_text` text DEFAULT NULL,
-                                         `article_date` timestamp NULL DEFAULT current_timestamp(),
-                                         `article_visibility` tinyint(1) UNSIGNED DEFAULT 1,
-                                         `user_id` int(10) UNSIGNED DEFAULT NULL,
-                                         PRIMARY KEY (`id`),
-                                         UNIQUE KEY `article_slug` (`article_slug`),
-                                         KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+    `article_title` varchar(120) NOT NULL,
+    `article_slug` varchar(125) NOT NULL,
+    `article_text` text DEFAULT NULL,
+    `article_date` timestamp NULL DEFAULT current_timestamp(),
+    `article_visibility` tinyint(1) UNSIGNED DEFAULT 1,
+    `user_id` int(10) UNSIGNED DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `article_slug` (`article_slug`),
+    KEY `user_id` (`user_id`)
+    ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `article`
@@ -57,17 +57,19 @@ INSERT INTO `article` (`id`, `article_title`, `article_slug`, `article_text`, `a
 DROP TABLE IF EXISTS `article_has_category`;
 CREATE TABLE IF NOT EXISTS `article_has_category` (
                                                       `article_id` int(10) UNSIGNED NOT NULL,
-                                                      `category_id` int(10) UNSIGNED NOT NULL,
-                                                      PRIMARY KEY (`article_id`,`category_id`),
-                                                      KEY `fk_category` (`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+    `category_id` int(10) UNSIGNED NOT NULL,
+    PRIMARY KEY (`article_id`,`category_id`),
+    KEY `fk_category` (`category_id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `article_has_category`
 --
 
 INSERT INTO `article_has_category` (`article_id`, `category_id`) VALUES
-    (2, 1);
+                                                                     (1, 1),
+                                                                     (2, 1),
+                                                                     (3, 2);
 
 -- --------------------------------------------------------
 
@@ -78,19 +80,20 @@ INSERT INTO `article_has_category` (`article_id`, `category_id`) VALUES
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE IF NOT EXISTS `category` (
                                           `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-                                          `category_name` varchar(80) NOT NULL,
-                                          `category_slug` varchar(84) NOT NULL,
-                                          `category_desc` varchar(300) DEFAULT NULL,
-                                          PRIMARY KEY (`id`),
-                                          UNIQUE KEY `category_slug` (`category_slug`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+    `category_name` varchar(80) NOT NULL,
+    `category_slug` varchar(84) NOT NULL,
+    `category_desc` varchar(300) DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `category_slug` (`category_slug`)
+    ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `category`
 --
 
 INSERT INTO `category` (`id`, `category_name`, `category_slug`, `category_desc`) VALUES
-    (1, 'SQL', 'sql', 'Langage pour interroger et gérer les bases de données relationnelles.');
+                                                                                     (1, 'SQL', 'sql', 'Langage pour interroger et gérer les bases de données relationnelles.'),
+                                                                                     (2, 'BDD NoSQL', 'bdd-nosql', 'NoSQL désigne une famille de systèmes de gestion de base de données (SGBD) qui s\'écarte du paradigme classique des bases relationnelles. L\'explicitation la plus populaire de l\'acronyme est Not only SQL (« pas seulement SQL » en anglais) même si cette interprétation peut être discutée.');
 
 -- --------------------------------------------------------
 
@@ -100,13 +103,13 @@ INSERT INTO `category` (`id`, `category_name`, `category_slug`, `category_desc`)
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
-                                      `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-                                      `user_login` varchar(30) NOT NULL,
-                                      `user_name` varchar(100) NOT NULL,
-                                      `user_email` varchar(120) NOT NULL,
-                                      `user_pwd` varchar(300) NOT NULL,
-                                      `user_role` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`user_role`)),
-                                      PRIMARY KEY (`id`)
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_login` varchar(30) NOT NULL,
+  `user_name` varchar(100) NOT NULL,
+  `user_email` varchar(120) NOT NULL,
+  `user_pwd` varchar(300) NOT NULL,
+  `user_role` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`user_role`)),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -114,7 +117,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `user_login`, `user_name`, `user_email`, `user_pwd`, `user_role`) VALUES
-    (1, 'mikhawa', 'Mike Pitz', 'michael.pitz@cf2m.be', '$2y$10$EzqfpQ00lPjMe1TCsXZWfOq6ZpwzGM1jy/3nKXyBSNijvbP9xCi5K', '[\"ROLE_ADMIN\"]');
+(1, 'mikhawa', 'Mike Pitz', 'michael.pitz@cf2m.be', '$2y$10$EzqfpQ00lPjMe1TCsXZWfOq6ZpwzGM1jy/3nKXyBSNijvbP9xCi5K', '[\"ROLE_ADMIN\"]');
 
 --
 -- Contraintes pour les tables déchargées
@@ -124,13 +127,13 @@ INSERT INTO `user` (`id`, `user_login`, `user_name`, `user_email`, `user_pwd`, `
 -- Contraintes pour la table `article`
 --
 ALTER TABLE `article`
-    ADD CONSTRAINT `article_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL;
+  ADD CONSTRAINT `article_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL;
 
 --
 -- Contraintes pour la table `article_has_category`
 --
 ALTER TABLE `article_has_category`
     ADD CONSTRAINT `fk_article` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`) ON DELETE CASCADE,
-    ADD CONSTRAINT `fk_category` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_category` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE CASCADE;
 SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
