@@ -2,8 +2,9 @@
 // création du namespace
 namespace model;
 
-use PDO;
+
 use Exception;
+use PDO;
 
 // implémentation de 2 interfaces
 class ArticleManager implements ManagerInterface, CrudInterface
@@ -17,7 +18,7 @@ class ArticleManager implements ManagerInterface, CrudInterface
     }
 
     // Appel du Trait pour slugifier le titre
-    use SlugifyTrait;
+    use TextTrait;
 
     /*
      * méthodes implémentées à cause de CrudInterface
@@ -160,6 +161,8 @@ class ArticleManager implements ManagerInterface, CrudInterface
             $sql .= "ORDER BY `article_date` DESC";
         $query = $this->db->query($sql);
         $stmt = $query->fetchAll(PDO::FETCH_ASSOC);
+        // si jamais pas d'articles, on a quand même un tableau
+        $result=[];
         foreach ($stmt as $item){
             // réutilisation des setters
             $result[] = new ArticleMapping($item);

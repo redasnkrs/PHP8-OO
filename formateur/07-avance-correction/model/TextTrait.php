@@ -3,7 +3,7 @@
 namespace model;
 
 use Exception;
-trait SlugifyTrait{
+trait TextTrait{
 
     public function slugify(string $text, $prefix=true, string $separator = '-'): string
     {

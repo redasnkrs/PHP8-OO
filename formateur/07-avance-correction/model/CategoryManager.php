@@ -15,7 +15,7 @@ class CategoryManager implements CrudInterface, ManagerInterface
     }
 
     // Appel du Trait pour slugifier le titre
-    use SlugifyTrait;
+    use TextTrait;
     public function readAll(bool $orderDesc = true): array
     {
         $sql = "SELECT * FROM category ";
