@@ -124,6 +124,7 @@ class CategoryManager  implements ManagerInterface, CrudInterface
             return false;
         }
     }
+    
 
    
 }

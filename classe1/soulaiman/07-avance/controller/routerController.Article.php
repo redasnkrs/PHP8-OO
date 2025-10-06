@@ -137,6 +137,13 @@ $CategoryManager = new CategoryManager($connectPDO);
                     include RACINE_PATH . "/view/404.html.php";
                 endif;
                 break;
+                case 'charts':
+            // charts
+                
+                $stats = $ArticleManager->statistique();
+                include RACINE_PATH . "/view/statistique.html.php";
+                break;
+
         }
 
     

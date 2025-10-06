@@ -146,4 +146,12 @@ class ArticleManager implements ManagerInterface, CrudInterface
         $query->closeCursor();
         return $result;
     }
+    public function statistique(): array
+    {
+      $sql = "SELECT DATE_FORMAT(article_date, '%Y-%m') as mois, COUNT(*) as total FROM article GROUP BY mois ORDER BY mois";
+    $query = $this->db->query($sql);
+    $stmt= $query->fetchAll(PDO::FETCH_ASSOC);
+        $query->closeCursor();
+        return $stmt;
+    }
 }
